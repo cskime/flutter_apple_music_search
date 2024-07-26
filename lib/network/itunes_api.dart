@@ -9,14 +9,13 @@ final itunesApiProvider = Provider(
 );
 
 class ItunesApi {
-  Uri _makeUri({
+  Uri _makeSearchUri({
     required String term,
-    required ItunesApiSearchType searchType,
     required ItunesApiEntityType entityType,
   }) =>
       Uri.https(
         "itunes.apple.com",
-        "/${searchType.name}",
+        "/search",
         {
           "term": term,
           "country": "us",
@@ -26,20 +25,40 @@ class ItunesApi {
         },
       );
 
+  Uri _makeLookupUri({
+    required int id,
+    required ItunesApiEntityType entityType,
+  }) =>
+      Uri.https(
+        "itunes.apple.com",
+        "/lookup",
+        {
+          "id": "$id",
+          "country": "us",
+          "entity": entityType.name,
+        },
+      );
+
   Future<ItunesResult> search({
     required String term,
     required ItunesApiEntityType entityType,
   }) async {
-    final uri = _makeUri(
+    final uri = _makeSearchUri(
       term: term,
-      searchType: ItunesApiSearchType.search,
       entityType: entityType,
     );
     final response = await get(uri);
     return ItunesResult.fromJson(jsonDecode(response.body));
   }
-}
 
-enum ItunesApiSearchType { search, lookup }
+  Future<ItunesResult> lookup({
+    required int id,
+    required ItunesApiEntityType entityType,
+  }) async {
+    final uri = _makeLookupUri(id: id, entityType: entityType);
+    final response = await get(uri);
+    return ItunesResult.fromJson(jsonDecode(response.body));
+  }
+}
 
 enum ItunesApiEntityType { musicArtist, album, song }

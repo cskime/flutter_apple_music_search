@@ -6,7 +6,6 @@ part 'itunes_result.g.dart';
 @freezed
 class ItunesResult with _$ItunesResult {
   factory ItunesResult({
-    required int resultCount,
     required List<Map<String, dynamic>> results,
   }) = _ItunesResult;
 

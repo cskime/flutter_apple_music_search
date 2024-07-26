@@ -20,7 +20,6 @@ ItunesResult _$ItunesResultFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ItunesResult {
-  int get resultCount => throw _privateConstructorUsedError;
   List<Map<String, dynamic>> get results => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +34,7 @@ abstract class $ItunesResultCopyWith<$Res> {
           ItunesResult value, $Res Function(ItunesResult) then) =
       _$ItunesResultCopyWithImpl<$Res, ItunesResult>;
   @useResult
-  $Res call({int resultCount, List<Map<String, dynamic>> results});
+  $Res call({List<Map<String, dynamic>> results});
 }
 
 /// @nodoc
@@ -51,14 +50,9 @@ class _$ItunesResultCopyWithImpl<$Res, $Val extends ItunesResult>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? resultCount = null,
     Object? results = null,
   }) {
     return _then(_value.copyWith(
-      resultCount: null == resultCount
-          ? _value.resultCount
-          : resultCount // ignore: cast_nullable_to_non_nullable
-              as int,
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
@@ -75,7 +69,7 @@ abstract class _$$ItunesResultImplCopyWith<$Res>
       __$$ItunesResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int resultCount, List<Map<String, dynamic>> results});
+  $Res call({List<Map<String, dynamic>> results});
 }
 
 /// @nodoc
@@ -89,14 +83,9 @@ class __$$ItunesResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? resultCount = null,
     Object? results = null,
   }) {
     return _then(_$ItunesResultImpl(
-      resultCount: null == resultCount
-          ? _value.resultCount
-          : resultCount // ignore: cast_nullable_to_non_nullable
-              as int,
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
@@ -108,16 +97,12 @@ class __$$ItunesResultImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ItunesResultImpl implements _ItunesResult {
-  _$ItunesResultImpl(
-      {required this.resultCount,
-      required final List<Map<String, dynamic>> results})
+  _$ItunesResultImpl({required final List<Map<String, dynamic>> results})
       : _results = results;
 
   factory _$ItunesResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$ItunesResultImplFromJson(json);
 
-  @override
-  final int resultCount;
   final List<Map<String, dynamic>> _results;
   @override
   List<Map<String, dynamic>> get results {
@@ -128,7 +113,7 @@ class _$ItunesResultImpl implements _ItunesResult {
 
   @override
   String toString() {
-    return 'ItunesResult(resultCount: $resultCount, results: $results)';
+    return 'ItunesResult(results: $results)';
   }
 
   @override
@@ -136,15 +121,13 @@ class _$ItunesResultImpl implements _ItunesResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ItunesResultImpl &&
-            (identical(other.resultCount, resultCount) ||
-                other.resultCount == resultCount) &&
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, resultCount, const DeepCollectionEquality().hash(_results));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_results));
 
   @JsonKey(ignore: true)
   @override
@@ -161,15 +144,12 @@ class _$ItunesResultImpl implements _ItunesResult {
 }
 
 abstract class _ItunesResult implements ItunesResult {
-  factory _ItunesResult(
-      {required final int resultCount,
-      required final List<Map<String, dynamic>> results}) = _$ItunesResultImpl;
+  factory _ItunesResult({required final List<Map<String, dynamic>> results}) =
+      _$ItunesResultImpl;
 
   factory _ItunesResult.fromJson(Map<String, dynamic> json) =
       _$ItunesResultImpl.fromJson;
 
-  @override
-  int get resultCount;
   @override
   List<Map<String, dynamic>> get results;
   @override

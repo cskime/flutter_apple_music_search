@@ -21,7 +21,7 @@ class SearchResultTag extends StatelessWidget {
     return GestureDetector(
       onTap: () => onPressed(artist),
       child: AnimatedContainer(
-        duration: 100.ms,
+        duration: 150.ms,
         decoration: BoxDecoration(
           color: selected ? primaryColor : Colors.white,
           borderRadius: BorderRadius.circular(24),

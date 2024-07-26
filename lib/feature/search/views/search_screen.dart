@@ -1,3 +1,4 @@
+import 'package:apple_music_search/feature/album/views/albums_screen.dart';
 import 'package:apple_music_search/feature/search/models/artist/artist_model.dart';
 import 'package:apple_music_search/feature/search/view_models/search_view_model.dart';
 import 'package:apple_music_search/feature/search/views/widgets/artist_name_tag.dart';
@@ -43,6 +44,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen>
   }
 
   void _onArtistPressed(ArtistModel artist) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => AlbumsScreen(artist),
+      ),
+    );
     setState(() {
       _selectedArtis = artist;
     });
