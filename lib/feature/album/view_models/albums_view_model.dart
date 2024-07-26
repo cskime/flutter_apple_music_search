@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:apple_music_search/feature/album/models/album_model.dart';
+import 'package:apple_music_search/feature/album/models/album_model/album_model.dart';
 import 'package:apple_music_search/network/itunes_api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,5 +22,9 @@ class AlbumsViewModel
         .where((json) => json["wrapperType"] == "collection")
         .map((json) => AlbumModel.fromJson(json))
         .toList();
+  }
+
+  int? albumIdAtIndex(int index) {
+    return state.value?[index].collectionId;
   }
 }

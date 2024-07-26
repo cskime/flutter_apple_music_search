@@ -21,10 +21,8 @@ AlbumModel _$AlbumModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AlbumModel {
   int get collectionId => throw _privateConstructorUsedError;
-  String get artistName => throw _privateConstructorUsedError;
   String get collectionName => throw _privateConstructorUsedError;
   String get artworkUrl100 => throw _privateConstructorUsedError;
-  int get trackCount => throw _privateConstructorUsedError;
   String get releaseDate => throw _privateConstructorUsedError;
   String get primaryGenreName => throw _privateConstructorUsedError;
 
@@ -42,10 +40,8 @@ abstract class $AlbumModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int collectionId,
-      String artistName,
       String collectionName,
       String artworkUrl100,
-      int trackCount,
       String releaseDate,
       String primaryGenreName});
 }
@@ -64,10 +60,8 @@ class _$AlbumModelCopyWithImpl<$Res, $Val extends AlbumModel>
   @override
   $Res call({
     Object? collectionId = null,
-    Object? artistName = null,
     Object? collectionName = null,
     Object? artworkUrl100 = null,
-    Object? trackCount = null,
     Object? releaseDate = null,
     Object? primaryGenreName = null,
   }) {
@@ -76,10 +70,6 @@ class _$AlbumModelCopyWithImpl<$Res, $Val extends AlbumModel>
           ? _value.collectionId
           : collectionId // ignore: cast_nullable_to_non_nullable
               as int,
-      artistName: null == artistName
-          ? _value.artistName
-          : artistName // ignore: cast_nullable_to_non_nullable
-              as String,
       collectionName: null == collectionName
           ? _value.collectionName
           : collectionName // ignore: cast_nullable_to_non_nullable
@@ -88,10 +78,6 @@ class _$AlbumModelCopyWithImpl<$Res, $Val extends AlbumModel>
           ? _value.artworkUrl100
           : artworkUrl100 // ignore: cast_nullable_to_non_nullable
               as String,
-      trackCount: null == trackCount
-          ? _value.trackCount
-          : trackCount // ignore: cast_nullable_to_non_nullable
-              as int,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -114,10 +100,8 @@ abstract class _$$AlbumModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int collectionId,
-      String artistName,
       String collectionName,
       String artworkUrl100,
-      int trackCount,
       String releaseDate,
       String primaryGenreName});
 }
@@ -134,10 +118,8 @@ class __$$AlbumModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? collectionId = null,
-    Object? artistName = null,
     Object? collectionName = null,
     Object? artworkUrl100 = null,
-    Object? trackCount = null,
     Object? releaseDate = null,
     Object? primaryGenreName = null,
   }) {
@@ -146,10 +128,6 @@ class __$$AlbumModelImplCopyWithImpl<$Res>
           ? _value.collectionId
           : collectionId // ignore: cast_nullable_to_non_nullable
               as int,
-      artistName: null == artistName
-          ? _value.artistName
-          : artistName // ignore: cast_nullable_to_non_nullable
-              as String,
       collectionName: null == collectionName
           ? _value.collectionName
           : collectionName // ignore: cast_nullable_to_non_nullable
@@ -158,10 +136,6 @@ class __$$AlbumModelImplCopyWithImpl<$Res>
           ? _value.artworkUrl100
           : artworkUrl100 // ignore: cast_nullable_to_non_nullable
               as String,
-      trackCount: null == trackCount
-          ? _value.trackCount
-          : trackCount // ignore: cast_nullable_to_non_nullable
-              as int,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -179,10 +153,8 @@ class __$$AlbumModelImplCopyWithImpl<$Res>
 class _$AlbumModelImpl implements _AlbumModel {
   _$AlbumModelImpl(
       {required this.collectionId,
-      required this.artistName,
       required this.collectionName,
       required this.artworkUrl100,
-      required this.trackCount,
       required this.releaseDate,
       required this.primaryGenreName});
 
@@ -192,13 +164,9 @@ class _$AlbumModelImpl implements _AlbumModel {
   @override
   final int collectionId;
   @override
-  final String artistName;
-  @override
   final String collectionName;
   @override
   final String artworkUrl100;
-  @override
-  final int trackCount;
   @override
   final String releaseDate;
   @override
@@ -206,7 +174,7 @@ class _$AlbumModelImpl implements _AlbumModel {
 
   @override
   String toString() {
-    return 'AlbumModel(collectionId: $collectionId, artistName: $artistName, collectionName: $collectionName, artworkUrl100: $artworkUrl100, trackCount: $trackCount, releaseDate: $releaseDate, primaryGenreName: $primaryGenreName)';
+    return 'AlbumModel(collectionId: $collectionId, collectionName: $collectionName, artworkUrl100: $artworkUrl100, releaseDate: $releaseDate, primaryGenreName: $primaryGenreName)';
   }
 
   @override
@@ -216,14 +184,10 @@ class _$AlbumModelImpl implements _AlbumModel {
             other is _$AlbumModelImpl &&
             (identical(other.collectionId, collectionId) ||
                 other.collectionId == collectionId) &&
-            (identical(other.artistName, artistName) ||
-                other.artistName == artistName) &&
             (identical(other.collectionName, collectionName) ||
                 other.collectionName == collectionName) &&
             (identical(other.artworkUrl100, artworkUrl100) ||
                 other.artworkUrl100 == artworkUrl100) &&
-            (identical(other.trackCount, trackCount) ||
-                other.trackCount == trackCount) &&
             (identical(other.releaseDate, releaseDate) ||
                 other.releaseDate == releaseDate) &&
             (identical(other.primaryGenreName, primaryGenreName) ||
@@ -232,8 +196,8 @@ class _$AlbumModelImpl implements _AlbumModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, collectionId, artistName,
-      collectionName, artworkUrl100, trackCount, releaseDate, primaryGenreName);
+  int get hashCode => Object.hash(runtimeType, collectionId, collectionName,
+      artworkUrl100, releaseDate, primaryGenreName);
 
   @JsonKey(ignore: true)
   @override
@@ -252,10 +216,8 @@ class _$AlbumModelImpl implements _AlbumModel {
 abstract class _AlbumModel implements AlbumModel {
   factory _AlbumModel(
       {required final int collectionId,
-      required final String artistName,
       required final String collectionName,
       required final String artworkUrl100,
-      required final int trackCount,
       required final String releaseDate,
       required final String primaryGenreName}) = _$AlbumModelImpl;
 
@@ -265,13 +227,9 @@ abstract class _AlbumModel implements AlbumModel {
   @override
   int get collectionId;
   @override
-  String get artistName;
-  @override
   String get collectionName;
   @override
   String get artworkUrl100;
-  @override
-  int get trackCount;
   @override
   String get releaseDate;
   @override

@@ -7,10 +7,8 @@ part 'album_model.g.dart';
 class AlbumModel with _$AlbumModel {
   factory AlbumModel({
     required int collectionId,
-    required String artistName,
     required String collectionName,
     required String artworkUrl100,
-    required int trackCount,
     required String releaseDate,
     required String primaryGenreName,
   }) = _AlbumModel;

@@ -6,11 +6,13 @@ class AlbumCover extends StatelessWidget {
     required this.coverUrlString,
     required this.albumName,
     required this.releaseYear,
+    required this.genre,
   });
 
   final String coverUrlString;
   final String albumName;
   final String releaseYear;
+  final String genre;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class AlbumCover extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          releaseYear,
+          "$releaseYear · $genre",
           style: const TextStyle(
             color: Colors.white,
             fontSize: 16,
