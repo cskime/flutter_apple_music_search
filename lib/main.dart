@@ -1,8 +1,14 @@
-import 'package:apple_music_search/features/search/views/search_screen.dart';
+import 'package:apple_music_search/feature/search/views/search_screen.dart';
+import 'package:apple_music_search/theme/light_theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const AppleMusicSearchApp());
+  runApp(
+    const ProviderScope(
+      child: AppleMusicSearchApp(),
+    ),
+  );
 }
 
 class AppleMusicSearchApp extends StatelessWidget {
@@ -10,9 +16,10 @@ class AppleMusicSearchApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "AppleMusicSearchApp",
-      home: SearchScreen(),
+      theme: lightThemeData,
+      home: const SearchScreen(),
     );
   }
 }
