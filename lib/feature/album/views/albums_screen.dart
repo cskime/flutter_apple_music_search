@@ -158,17 +158,11 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
                             );
                           },
                           onPageChanged: _onPageChanged,
-                        )
-                            .animate(
-                              autoPlay: false,
-                              target: _showAlbumTracks ? 1 : 0,
-                            )
-                            .moveY(
-                              begin: 0,
-                              end: -MediaQuery.sizeOf(context).height,
-                              duration: 1.seconds,
-                              curve: Curves.easeInOut,
-                            ),
+                        )._animatePageY(
+                          context: context,
+                          forward: _showAlbumTracks,
+                          reverse: false,
+                        ),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: SafeArea(
@@ -177,22 +171,19 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
                               showsTrack: true,
                             ),
                           ),
-                        ),
+                        )._animatePageY(
+                            context: context,
+                            forward: _showAlbumTracks,
+                            reverse: false),
                         if (_currentAlbumId != null)
                           TracksScreen(
                             albumId: _currentAlbumId!,
                             onShowAlbumPressed: _onShowAlbumPressed,
-                          )
-                              .animate(
-                                autoPlay: false,
-                                target: _showAlbumTracks ? 1 : 0,
-                              )
-                              .moveY(
-                                begin: MediaQuery.sizeOf(context).height,
-                                end: 0,
-                                duration: 1.seconds,
-                                curve: Curves.easeInOut,
-                              ),
+                          )._animatePageY(
+                            context: context,
+                            forward: _showAlbumTracks,
+                            reverse: true,
+                          ),
                       ],
                     ),
                   ),
@@ -203,6 +194,25 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
               child: CircularProgressIndicator.adaptive(),
             ),
           ),
+    );
+  }
+}
+
+extension VerticalMoveAnimate on Widget {
+  Animate _animatePageY({
+    required BuildContext context,
+    required bool forward,
+    required bool reverse,
+  }) {
+    final height = MediaQuery.sizeOf(context).height;
+    return animate(
+      autoPlay: false,
+      target: forward ? 1 : 0,
+    ).moveY(
+      begin: reverse ? height : 0,
+      end: reverse ? 0 : -height,
+      duration: 1.seconds,
+      curve: Curves.easeInOut,
     );
   }
 }
