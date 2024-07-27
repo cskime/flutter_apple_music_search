@@ -19,7 +19,7 @@ class AlbumsViewModel
       entityType: ItunesApiEntityType.song,
     );
     return result.results
-        .where((json) => json["wrapperType"] == "track")
+        .where((json) => json["kind"] == "song")
         .map((json) => TrackModel.fromJson(json))
         .toList();
   }

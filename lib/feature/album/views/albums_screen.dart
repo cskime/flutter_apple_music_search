@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:apple_music_search/feature/album/services/release_date_formatter.dart';
 import 'package:apple_music_search/feature/album/view_models/albums_view_model.dart';
 import 'package:apple_music_search/feature/album/views/tracks_screen.dart';
 import 'package:apple_music_search/feature/album/views/widgets/album_cover.dart';
@@ -145,8 +146,10 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
                                     child: AlbumCover(
                                       coverUrlString: album.artworkUrl100,
                                       albumName: album.collectionName,
-                                      releaseYear:
-                                          album.releaseDate.split("-").first,
+                                      releaseYear: ReleaseDateFormatter()
+                                          .dateTime(album.releaseDate)
+                                          .year
+                                          .toString(),
                                       genre: album.primaryGenreName,
                                     ),
                                   );
