@@ -53,6 +53,14 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
     super.dispose();
   }
 
+  void _onBackPressed() {
+    if (_showAlbumTracks) {
+      _showsTrack(false);
+    } else {
+      Navigator.of(context).pop();
+    }
+  }
+
   void _onPageChanged(int value) {
     setState(() {
       _currentPageIndex = value;
@@ -92,6 +100,16 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
     _currentAlbumId =
         ref.read(viewModelProvider.notifier).albumIdAtIndex(_currentPageIndex);
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        foregroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          onPressed: _onBackPressed,
+        ),
+      ),
       body: ref.watch(viewModelProvider).when(
             data: (data) => data.isEmpty
                 ? const Center(
