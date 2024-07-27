@@ -24,6 +24,13 @@ class AlbumCover extends StatelessWidget {
           // height: MediaQuery.sizeOf(context).width * 0.7,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                offset: const Offset(0, 4),
+                blurRadius: 10,
+              ),
+            ],
           ),
           clipBehavior: Clip.hardEdge,
           child: Image.network(
