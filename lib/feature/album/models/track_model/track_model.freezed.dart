@@ -22,9 +22,12 @@ TrackModel _$TrackModelFromJson(Map<String, dynamic> json) {
 mixin _$TrackModel {
   int get trackId => throw _privateConstructorUsedError;
   String get trackName => throw _privateConstructorUsedError;
+  String get collectionName => throw _privateConstructorUsedError;
   String get artworkUrl60 => throw _privateConstructorUsedError;
+  String get artworkUrl100 => throw _privateConstructorUsedError;
   int get trackNumber => throw _privateConstructorUsedError;
   String get releaseDate => throw _privateConstructorUsedError;
+  int get trackCount => throw _privateConstructorUsedError;
   bool get isStreamable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,9 +45,12 @@ abstract class $TrackModelCopyWith<$Res> {
   $Res call(
       {int trackId,
       String trackName,
+      String collectionName,
       String artworkUrl60,
+      String artworkUrl100,
       int trackNumber,
       String releaseDate,
+      int trackCount,
       bool isStreamable});
 }
 
@@ -63,9 +69,12 @@ class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
   $Res call({
     Object? trackId = null,
     Object? trackName = null,
+    Object? collectionName = null,
     Object? artworkUrl60 = null,
+    Object? artworkUrl100 = null,
     Object? trackNumber = null,
     Object? releaseDate = null,
+    Object? trackCount = null,
     Object? isStreamable = null,
   }) {
     return _then(_value.copyWith(
@@ -77,9 +86,17 @@ class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
           ? _value.trackName
           : trackName // ignore: cast_nullable_to_non_nullable
               as String,
+      collectionName: null == collectionName
+          ? _value.collectionName
+          : collectionName // ignore: cast_nullable_to_non_nullable
+              as String,
       artworkUrl60: null == artworkUrl60
           ? _value.artworkUrl60
           : artworkUrl60 // ignore: cast_nullable_to_non_nullable
+              as String,
+      artworkUrl100: null == artworkUrl100
+          ? _value.artworkUrl100
+          : artworkUrl100 // ignore: cast_nullable_to_non_nullable
               as String,
       trackNumber: null == trackNumber
           ? _value.trackNumber
@@ -89,6 +106,10 @@ class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
               as String,
+      trackCount: null == trackCount
+          ? _value.trackCount
+          : trackCount // ignore: cast_nullable_to_non_nullable
+              as int,
       isStreamable: null == isStreamable
           ? _value.isStreamable
           : isStreamable // ignore: cast_nullable_to_non_nullable
@@ -108,9 +129,12 @@ abstract class _$$TrackModelImplCopyWith<$Res>
   $Res call(
       {int trackId,
       String trackName,
+      String collectionName,
       String artworkUrl60,
+      String artworkUrl100,
       int trackNumber,
       String releaseDate,
+      int trackCount,
       bool isStreamable});
 }
 
@@ -127,9 +151,12 @@ class __$$TrackModelImplCopyWithImpl<$Res>
   $Res call({
     Object? trackId = null,
     Object? trackName = null,
+    Object? collectionName = null,
     Object? artworkUrl60 = null,
+    Object? artworkUrl100 = null,
     Object? trackNumber = null,
     Object? releaseDate = null,
+    Object? trackCount = null,
     Object? isStreamable = null,
   }) {
     return _then(_$TrackModelImpl(
@@ -141,9 +168,17 @@ class __$$TrackModelImplCopyWithImpl<$Res>
           ? _value.trackName
           : trackName // ignore: cast_nullable_to_non_nullable
               as String,
+      collectionName: null == collectionName
+          ? _value.collectionName
+          : collectionName // ignore: cast_nullable_to_non_nullable
+              as String,
       artworkUrl60: null == artworkUrl60
           ? _value.artworkUrl60
           : artworkUrl60 // ignore: cast_nullable_to_non_nullable
+              as String,
+      artworkUrl100: null == artworkUrl100
+          ? _value.artworkUrl100
+          : artworkUrl100 // ignore: cast_nullable_to_non_nullable
               as String,
       trackNumber: null == trackNumber
           ? _value.trackNumber
@@ -153,6 +188,10 @@ class __$$TrackModelImplCopyWithImpl<$Res>
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
               as String,
+      trackCount: null == trackCount
+          ? _value.trackCount
+          : trackCount // ignore: cast_nullable_to_non_nullable
+              as int,
       isStreamable: null == isStreamable
           ? _value.isStreamable
           : isStreamable // ignore: cast_nullable_to_non_nullable
@@ -167,9 +206,12 @@ class _$TrackModelImpl implements _TrackModel {
   _$TrackModelImpl(
       {required this.trackId,
       required this.trackName,
+      required this.collectionName,
       required this.artworkUrl60,
+      required this.artworkUrl100,
       required this.trackNumber,
       required this.releaseDate,
+      required this.trackCount,
       required this.isStreamable});
 
   factory _$TrackModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -180,17 +222,23 @@ class _$TrackModelImpl implements _TrackModel {
   @override
   final String trackName;
   @override
+  final String collectionName;
+  @override
   final String artworkUrl60;
+  @override
+  final String artworkUrl100;
   @override
   final int trackNumber;
   @override
   final String releaseDate;
   @override
+  final int trackCount;
+  @override
   final bool isStreamable;
 
   @override
   String toString() {
-    return 'TrackModel(trackId: $trackId, trackName: $trackName, artworkUrl60: $artworkUrl60, trackNumber: $trackNumber, releaseDate: $releaseDate, isStreamable: $isStreamable)';
+    return 'TrackModel(trackId: $trackId, trackName: $trackName, collectionName: $collectionName, artworkUrl60: $artworkUrl60, artworkUrl100: $artworkUrl100, trackNumber: $trackNumber, releaseDate: $releaseDate, trackCount: $trackCount, isStreamable: $isStreamable)';
   }
 
   @override
@@ -201,20 +249,35 @@ class _$TrackModelImpl implements _TrackModel {
             (identical(other.trackId, trackId) || other.trackId == trackId) &&
             (identical(other.trackName, trackName) ||
                 other.trackName == trackName) &&
+            (identical(other.collectionName, collectionName) ||
+                other.collectionName == collectionName) &&
             (identical(other.artworkUrl60, artworkUrl60) ||
                 other.artworkUrl60 == artworkUrl60) &&
+            (identical(other.artworkUrl100, artworkUrl100) ||
+                other.artworkUrl100 == artworkUrl100) &&
             (identical(other.trackNumber, trackNumber) ||
                 other.trackNumber == trackNumber) &&
             (identical(other.releaseDate, releaseDate) ||
                 other.releaseDate == releaseDate) &&
+            (identical(other.trackCount, trackCount) ||
+                other.trackCount == trackCount) &&
             (identical(other.isStreamable, isStreamable) ||
                 other.isStreamable == isStreamable));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, trackId, trackName, artworkUrl60,
-      trackNumber, releaseDate, isStreamable);
+  int get hashCode => Object.hash(
+      runtimeType,
+      trackId,
+      trackName,
+      collectionName,
+      artworkUrl60,
+      artworkUrl100,
+      trackNumber,
+      releaseDate,
+      trackCount,
+      isStreamable);
 
   @JsonKey(ignore: true)
   @override
@@ -234,9 +297,12 @@ abstract class _TrackModel implements TrackModel {
   factory _TrackModel(
       {required final int trackId,
       required final String trackName,
+      required final String collectionName,
       required final String artworkUrl60,
+      required final String artworkUrl100,
       required final int trackNumber,
       required final String releaseDate,
+      required final int trackCount,
       required final bool isStreamable}) = _$TrackModelImpl;
 
   factory _TrackModel.fromJson(Map<String, dynamic> json) =
@@ -247,11 +313,17 @@ abstract class _TrackModel implements TrackModel {
   @override
   String get trackName;
   @override
+  String get collectionName;
+  @override
   String get artworkUrl60;
+  @override
+  String get artworkUrl100;
   @override
   int get trackNumber;
   @override
   String get releaseDate;
+  @override
+  int get trackCount;
   @override
   bool get isStreamable;
   @override

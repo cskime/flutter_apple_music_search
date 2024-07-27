@@ -1,5 +1,6 @@
 import 'package:apple_music_search/feature/album/models/track_model/track_model.dart';
 import 'package:apple_music_search/feature/album/view_models/tracks_view_model.dart';
+import 'package:apple_music_search/feature/album/views/widgets/track_list_header.dart';
 import 'package:apple_music_search/feature/album/views/widgets/track_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,16 +33,24 @@ class _TracksScreenState extends ConsumerState<TracksScreen> {
     return ref.watch(tracksViewModelProvider(widget.albumId)).when(
           data: (data) => SafeArea(
             bottom: false,
-            child: ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                final track = data[index];
-                return TrackListItem(
-                  track: track,
-                  playing: _currentPlayingTrack == track,
-                  onPlayPressed: _onTrackPlayPressed,
-                );
-              },
+            child: Column(
+              children: [
+                TrackListHeader(track: data.first),
+                const SizedBox(height: 16),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      final track = data[index];
+                      return TrackListItem(
+                        track: track,
+                        playing: _currentPlayingTrack == track,
+                        onPlayPressed: _onTrackPlayPressed,
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
           error: (error, stackTrace) => Center(

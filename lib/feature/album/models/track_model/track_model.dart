@@ -8,9 +8,12 @@ class TrackModel with _$TrackModel {
   factory TrackModel({
     required int trackId,
     required String trackName,
+    required String collectionName,
     required String artworkUrl60,
+    required String artworkUrl100,
     required int trackNumber,
     required String releaseDate,
+    required int trackCount,
     required bool isStreamable,
   }) = _TrackModel;
 

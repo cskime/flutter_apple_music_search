@@ -38,7 +38,7 @@ class _TrackListItemState extends State<TrackListItem> {
       _animationController?.reset();
     }
 
-    final titleText = "${widget.track.trackNumber}. ${widget.track.trackName} ";
+    final titleText = "${widget.track.trackName} ";
     final titleTextStyle = TextStyle(
       color: Colors.grey.shade100,
       fontSize: 16,
