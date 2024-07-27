@@ -1,5 +1,4 @@
 import 'package:apple_music_search/feature/album/models/track_model/track_model.dart';
-import 'package:apple_music_search/feature/album/services/release_date_formatter.dart';
 import 'package:flutter/material.dart';
 
 class TrackListHeader extends StatelessWidget {
@@ -10,8 +9,7 @@ class TrackListHeader extends StatelessWidget {
 
   final TrackModel track;
 
-  String get description =>
-      "${ReleaseDateFormatter().dateTime(track.releaseDate).year} · ${track.trackCount} song(s)";
+  String get description => "${track.trackCount} song(s)";
 
   @override
   Widget build(BuildContext context) {
