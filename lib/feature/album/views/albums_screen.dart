@@ -4,7 +4,6 @@ import 'package:apple_music_search/feature/album/services/release_date_formatter
 import 'package:apple_music_search/feature/album/view_models/albums_view_model.dart';
 import 'package:apple_music_search/feature/album/views/tracks_screen.dart';
 import 'package:apple_music_search/feature/album/views/widgets/album_cover.dart';
-import 'package:apple_music_search/feature/album/views/widgets/album_track_transition_button.dart';
 import 'package:apple_music_search/feature/search/models/artist/artist_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -184,9 +183,25 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: SafeArea(
-                            child: AlbumTrackTransitionButton(
+                            child: IconButton(
                               onPressed: _onShowTrackPressed,
-                              showsTrack: true,
+                              icon: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Transform.translate(
+                                    offset: const Offset(0, 10),
+                                    child: Icon(
+                                      Icons.queue_music_rounded,
+                                      size: 32,
+                                      color: Colors.grey.shade100,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_drop_down,
+                                    color: Colors.grey.shade100,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         )._animatePageY(
