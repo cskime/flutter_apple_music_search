@@ -23,6 +23,7 @@ mixin _$TrackModel {
   int get trackId => throw _privateConstructorUsedError;
   String get trackName => throw _privateConstructorUsedError;
   String get collectionName => throw _privateConstructorUsedError;
+  String get artistName => throw _privateConstructorUsedError;
   String get artworkUrl60 => throw _privateConstructorUsedError;
   String get artworkUrl100 => throw _privateConstructorUsedError;
   int get trackNumber => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $TrackModelCopyWith<$Res> {
       {int trackId,
       String trackName,
       String collectionName,
+      String artistName,
       String artworkUrl60,
       String artworkUrl100,
       int trackNumber,
@@ -72,6 +74,7 @@ class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
     Object? trackId = null,
     Object? trackName = null,
     Object? collectionName = null,
+    Object? artistName = null,
     Object? artworkUrl60 = null,
     Object? artworkUrl100 = null,
     Object? trackNumber = null,
@@ -92,6 +95,10 @@ class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
       collectionName: null == collectionName
           ? _value.collectionName
           : collectionName // ignore: cast_nullable_to_non_nullable
+              as String,
+      artistName: null == artistName
+          ? _value.artistName
+          : artistName // ignore: cast_nullable_to_non_nullable
               as String,
       artworkUrl60: null == artworkUrl60
           ? _value.artworkUrl60
@@ -137,6 +144,7 @@ abstract class _$$TrackModelImplCopyWith<$Res>
       {int trackId,
       String trackName,
       String collectionName,
+      String artistName,
       String artworkUrl60,
       String artworkUrl100,
       int trackNumber,
@@ -160,6 +168,7 @@ class __$$TrackModelImplCopyWithImpl<$Res>
     Object? trackId = null,
     Object? trackName = null,
     Object? collectionName = null,
+    Object? artistName = null,
     Object? artworkUrl60 = null,
     Object? artworkUrl100 = null,
     Object? trackNumber = null,
@@ -180,6 +189,10 @@ class __$$TrackModelImplCopyWithImpl<$Res>
       collectionName: null == collectionName
           ? _value.collectionName
           : collectionName // ignore: cast_nullable_to_non_nullable
+              as String,
+      artistName: null == artistName
+          ? _value.artistName
+          : artistName // ignore: cast_nullable_to_non_nullable
               as String,
       artworkUrl60: null == artworkUrl60
           ? _value.artworkUrl60
@@ -220,6 +233,7 @@ class _$TrackModelImpl implements _TrackModel {
       {required this.trackId,
       required this.trackName,
       required this.collectionName,
+      required this.artistName,
       required this.artworkUrl60,
       required this.artworkUrl100,
       required this.trackNumber,
@@ -238,6 +252,8 @@ class _$TrackModelImpl implements _TrackModel {
   @override
   final String collectionName;
   @override
+  final String artistName;
+  @override
   final String artworkUrl60;
   @override
   final String artworkUrl100;
@@ -254,7 +270,7 @@ class _$TrackModelImpl implements _TrackModel {
 
   @override
   String toString() {
-    return 'TrackModel(trackId: $trackId, trackName: $trackName, collectionName: $collectionName, artworkUrl60: $artworkUrl60, artworkUrl100: $artworkUrl100, trackNumber: $trackNumber, previewUrl: $previewUrl, releaseDate: $releaseDate, trackCount: $trackCount, isStreamable: $isStreamable)';
+    return 'TrackModel(trackId: $trackId, trackName: $trackName, collectionName: $collectionName, artistName: $artistName, artworkUrl60: $artworkUrl60, artworkUrl100: $artworkUrl100, trackNumber: $trackNumber, previewUrl: $previewUrl, releaseDate: $releaseDate, trackCount: $trackCount, isStreamable: $isStreamable)';
   }
 
   @override
@@ -267,6 +283,8 @@ class _$TrackModelImpl implements _TrackModel {
                 other.trackName == trackName) &&
             (identical(other.collectionName, collectionName) ||
                 other.collectionName == collectionName) &&
+            (identical(other.artistName, artistName) ||
+                other.artistName == artistName) &&
             (identical(other.artworkUrl60, artworkUrl60) ||
                 other.artworkUrl60 == artworkUrl60) &&
             (identical(other.artworkUrl100, artworkUrl100) ||
@@ -290,6 +308,7 @@ class _$TrackModelImpl implements _TrackModel {
       trackId,
       trackName,
       collectionName,
+      artistName,
       artworkUrl60,
       artworkUrl100,
       trackNumber,
@@ -317,6 +336,7 @@ abstract class _TrackModel implements TrackModel {
       {required final int trackId,
       required final String trackName,
       required final String collectionName,
+      required final String artistName,
       required final String artworkUrl60,
       required final String artworkUrl100,
       required final int trackNumber,
@@ -334,6 +354,8 @@ abstract class _TrackModel implements TrackModel {
   String get trackName;
   @override
   String get collectionName;
+  @override
+  String get artistName;
   @override
   String get artworkUrl60;
   @override

@@ -9,6 +9,7 @@ class TrackModel with _$TrackModel {
     required int trackId,
     required String trackName,
     required String collectionName,
+    required String artistName,
     required String artworkUrl60,
     required String artworkUrl100,
     required int trackNumber,

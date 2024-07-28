@@ -63,15 +63,12 @@ class _TrackListItemState extends State<TrackListItem> {
       color: widget.selected ? Colors.black12 : null,
       child: ListTile(
         titleTextStyle: titleTextStyle,
-        leading: Transform.scale(
-          scale: 0.8,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            clipBehavior: Clip.hardEdge,
-            child: Image.network(widget.track.artworkUrl60),
+        leading: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
           ),
+          clipBehavior: Clip.hardEdge,
+          child: Image.network(widget.track.artworkUrl60),
         ),
         title: LayoutBuilder(
           builder: (context, constraints) {
@@ -99,6 +96,12 @@ class _TrackListItemState extends State<TrackListItem> {
                   ),
             );
           },
+        ),
+        subtitle: Text(
+          widget.track.artistName,
+          style: TextStyle(
+            color: Colors.grey.shade300,
+          ),
         ),
         trailing: SizedBox(
           width: 48,
