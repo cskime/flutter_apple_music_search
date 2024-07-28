@@ -75,6 +75,10 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
     _dragging = false;
   }
 
+  void _onShowAlbumPressed() {
+    _showsTrack(false);
+  }
+
   void _onShowTrackPressed() {
     _showsTrack(true);
   }
@@ -122,10 +126,17 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         foregroundColor: Colors.white,
+        title: IconButton(
+          icon: const Icon(Icons.keyboard_arrow_up_rounded),
+          onPressed: _onShowAlbumPressed,
+        )._animateFadeIn(
+          forward: _showAlbumTracks,
+          reverse: false,
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
           onPressed: _onBackPressed,
-        )._animateFade(
+        )._animateFadeOut(
           forward: _showAlbumTracks,
           reverse: false,
         ),
@@ -212,7 +223,22 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
 }
 
 extension VerticalMoveAnimate on Widget {
-  Animate _animateFade({
+  Animate _animateFadeIn({
+    required bool forward,
+    required bool reverse,
+  }) {
+    return animate(
+      autoPlay: false,
+      target: forward ? 1 : 0,
+    ).fade(
+      begin: reverse ? 1 : 0,
+      end: reverse ? 0 : 1,
+      duration: 1.seconds,
+      curve: Curves.easeInOut,
+    );
+  }
+
+  Animate _animateFadeOut({
     required bool forward,
     required bool reverse,
   }) {
