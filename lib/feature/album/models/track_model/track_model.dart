@@ -12,6 +12,7 @@ class TrackModel with _$TrackModel {
     required String artworkUrl60,
     required String artworkUrl100,
     required int trackNumber,
+    required String previewUrl,
     required String releaseDate,
     required int trackCount,
     required bool isStreamable,

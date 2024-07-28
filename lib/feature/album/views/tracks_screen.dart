@@ -20,17 +20,41 @@ class TracksScreen extends ConsumerStatefulWidget {
 }
 
 class _TracksScreenState extends ConsumerState<TracksScreen> {
-  TrackModel? _currentPlayingTrack;
+  late final _viewModelProvider = tracksViewModelProvider(widget.albumId);
+  late final _viewModel = ref.read(_viewModelProvider.notifier);
 
-  void _onTrackPlayPressed(TrackModel track) {
+  TrackModel? _selectedTrack;
+  TrackModel? _playingTrack;
+  Stream<double>? _audioProgress;
+
+  bool _isSelectedTrack(TrackModel track) => _selectedTrack == track;
+  bool _isPlayingTrack(TrackModel track) => _playingTrack == track;
+
+  void _onTrackPlayPressed(TrackModel track) async {
+    if (_isPlayingTrack(track)) {
+      _viewModel.pauseAudio();
+      setState(() {
+        _playingTrack = null;
+      });
+      return;
+    }
+
+    if (!_isSelectedTrack(track)) {
+      _viewModel.stopAudio();
+    }
+
+    _audioProgress = await _viewModel.playAudio(track.previewUrl);
     setState(() {
-      _currentPlayingTrack = track;
+      if (!_isSelectedTrack(track)) {
+        _selectedTrack = track;
+      }
+      _playingTrack = track;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return ref.watch(tracksViewModelProvider(widget.albumId)).when(
+    return ref.watch(_viewModelProvider).when(
           data: (data) => SafeArea(
             bottom: false,
             child: Column(
@@ -44,7 +68,10 @@ class _TracksScreenState extends ConsumerState<TracksScreen> {
                       final track = data[index];
                       return TrackListItem(
                         track: track,
-                        playing: _currentPlayingTrack == track,
+                        selected: _selectedTrack == track,
+                        playing: _playingTrack == track,
+                        progress:
+                            _selectedTrack == track ? _audioProgress : null,
                         onPlayPressed: _onTrackPlayPressed,
                       );
                     },

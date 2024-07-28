@@ -26,6 +26,7 @@ mixin _$TrackModel {
   String get artworkUrl60 => throw _privateConstructorUsedError;
   String get artworkUrl100 => throw _privateConstructorUsedError;
   int get trackNumber => throw _privateConstructorUsedError;
+  String get previewUrl => throw _privateConstructorUsedError;
   String get releaseDate => throw _privateConstructorUsedError;
   int get trackCount => throw _privateConstructorUsedError;
   bool get isStreamable => throw _privateConstructorUsedError;
@@ -49,6 +50,7 @@ abstract class $TrackModelCopyWith<$Res> {
       String artworkUrl60,
       String artworkUrl100,
       int trackNumber,
+      String previewUrl,
       String releaseDate,
       int trackCount,
       bool isStreamable});
@@ -73,6 +75,7 @@ class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
     Object? artworkUrl60 = null,
     Object? artworkUrl100 = null,
     Object? trackNumber = null,
+    Object? previewUrl = null,
     Object? releaseDate = null,
     Object? trackCount = null,
     Object? isStreamable = null,
@@ -102,6 +105,10 @@ class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
           ? _value.trackNumber
           : trackNumber // ignore: cast_nullable_to_non_nullable
               as int,
+      previewUrl: null == previewUrl
+          ? _value.previewUrl
+          : previewUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -133,6 +140,7 @@ abstract class _$$TrackModelImplCopyWith<$Res>
       String artworkUrl60,
       String artworkUrl100,
       int trackNumber,
+      String previewUrl,
       String releaseDate,
       int trackCount,
       bool isStreamable});
@@ -155,6 +163,7 @@ class __$$TrackModelImplCopyWithImpl<$Res>
     Object? artworkUrl60 = null,
     Object? artworkUrl100 = null,
     Object? trackNumber = null,
+    Object? previewUrl = null,
     Object? releaseDate = null,
     Object? trackCount = null,
     Object? isStreamable = null,
@@ -184,6 +193,10 @@ class __$$TrackModelImplCopyWithImpl<$Res>
           ? _value.trackNumber
           : trackNumber // ignore: cast_nullable_to_non_nullable
               as int,
+      previewUrl: null == previewUrl
+          ? _value.previewUrl
+          : previewUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -210,6 +223,7 @@ class _$TrackModelImpl implements _TrackModel {
       required this.artworkUrl60,
       required this.artworkUrl100,
       required this.trackNumber,
+      required this.previewUrl,
       required this.releaseDate,
       required this.trackCount,
       required this.isStreamable});
@@ -230,6 +244,8 @@ class _$TrackModelImpl implements _TrackModel {
   @override
   final int trackNumber;
   @override
+  final String previewUrl;
+  @override
   final String releaseDate;
   @override
   final int trackCount;
@@ -238,7 +254,7 @@ class _$TrackModelImpl implements _TrackModel {
 
   @override
   String toString() {
-    return 'TrackModel(trackId: $trackId, trackName: $trackName, collectionName: $collectionName, artworkUrl60: $artworkUrl60, artworkUrl100: $artworkUrl100, trackNumber: $trackNumber, releaseDate: $releaseDate, trackCount: $trackCount, isStreamable: $isStreamable)';
+    return 'TrackModel(trackId: $trackId, trackName: $trackName, collectionName: $collectionName, artworkUrl60: $artworkUrl60, artworkUrl100: $artworkUrl100, trackNumber: $trackNumber, previewUrl: $previewUrl, releaseDate: $releaseDate, trackCount: $trackCount, isStreamable: $isStreamable)';
   }
 
   @override
@@ -257,6 +273,8 @@ class _$TrackModelImpl implements _TrackModel {
                 other.artworkUrl100 == artworkUrl100) &&
             (identical(other.trackNumber, trackNumber) ||
                 other.trackNumber == trackNumber) &&
+            (identical(other.previewUrl, previewUrl) ||
+                other.previewUrl == previewUrl) &&
             (identical(other.releaseDate, releaseDate) ||
                 other.releaseDate == releaseDate) &&
             (identical(other.trackCount, trackCount) ||
@@ -275,6 +293,7 @@ class _$TrackModelImpl implements _TrackModel {
       artworkUrl60,
       artworkUrl100,
       trackNumber,
+      previewUrl,
       releaseDate,
       trackCount,
       isStreamable);
@@ -301,6 +320,7 @@ abstract class _TrackModel implements TrackModel {
       required final String artworkUrl60,
       required final String artworkUrl100,
       required final int trackNumber,
+      required final String previewUrl,
       required final String releaseDate,
       required final int trackCount,
       required final bool isStreamable}) = _$TrackModelImpl;
@@ -320,6 +340,8 @@ abstract class _TrackModel implements TrackModel {
   String get artworkUrl100;
   @override
   int get trackNumber;
+  @override
+  String get previewUrl;
   @override
   String get releaseDate;
   @override

@@ -6,12 +6,16 @@ class TrackListItem extends StatefulWidget {
   const TrackListItem({
     super.key,
     required this.track,
+    required this.selected,
     required this.playing,
+    required this.progress,
     required this.onPlayPressed,
   });
 
   final TrackModel track;
+  final bool selected;
   final bool playing;
+  final Stream<double>? progress;
   final void Function(TrackModel track) onPlayPressed;
 
   @override
@@ -27,14 +31,14 @@ class _TrackListItemState extends State<TrackListItem> {
 
   void _onAnimationComplete(AnimationController controller) {
     controller.value = 0;
-    if (widget.playing) {
+    if (widget.selected) {
       controller.forward();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!widget.playing) {
+    if (!widget.selected) {
       _animationController?.reset();
     }
 
@@ -42,7 +46,7 @@ class _TrackListItemState extends State<TrackListItem> {
     final titleTextStyle = TextStyle(
       color: Colors.grey.shade100,
       fontSize: 16,
-      fontWeight: widget.playing ? FontWeight.bold : FontWeight.w500,
+      fontWeight: widget.selected ? FontWeight.bold : FontWeight.w500,
     );
     final titleTextPainter = TextPainter(
       text: TextSpan(text: titleText, style: titleTextStyle),
@@ -52,7 +56,7 @@ class _TrackListItemState extends State<TrackListItem> {
     final titleWidth = titleTextPainter.size.width;
 
     return Container(
-      color: widget.playing ? Colors.black12 : null,
+      color: widget.selected ? Colors.black12 : null,
       child: ListTile(
         titleTextStyle: titleTextStyle,
         leading: Transform.scale(
@@ -81,7 +85,7 @@ class _TrackListItemState extends State<TrackListItem> {
               )
                   .animate(
                     autoPlay: false,
-                    target: overflows && widget.playing ? 1 : 0,
+                    target: overflows && widget.selected ? 1 : 0,
                     onInit: _onAnimationInit,
                     onComplete: _onAnimationComplete,
                   )
@@ -93,18 +97,41 @@ class _TrackListItemState extends State<TrackListItem> {
             );
           },
         ),
-        trailing: Opacity(
-          opacity: widget.track.isStreamable ? 1 : 0.5,
-          child: IconButton(
-            onPressed: widget.track.isStreamable
-                ? () => widget.onPlayPressed(widget.track)
-                : null,
-            icon: Icon(
-              widget.playing
-                  ? Icons.pause_circle_filled_rounded
-                  : Icons.play_circle_fill_rounded,
-              color: Colors.grey.shade100,
-            ),
+        trailing: SizedBox(
+          width: 48,
+          height: 48,
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: 28,
+                  height: 28,
+                  child: StreamBuilder(
+                    stream: widget.progress,
+                    builder: (context, snapshot) => CircularProgressIndicator(
+                      value: snapshot.data ?? 0,
+                      strokeWidth: 3,
+                      color: Colors.grey.shade100,
+                    ),
+                  ),
+                ),
+              ),
+              Opacity(
+                opacity: widget.track.isStreamable ? 1 : 0.5,
+                child: IconButton(
+                  onPressed: widget.track.isStreamable
+                      ? () => widget.onPlayPressed(widget.track)
+                      : null,
+                  icon: Icon(
+                    widget.playing
+                        ? Icons.pause_circle_filled_rounded
+                        : Icons.play_circle_fill_rounded,
+                    color: Colors.grey.shade100,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
