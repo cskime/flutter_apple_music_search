@@ -9,7 +9,8 @@ class TrackListHeader extends StatelessWidget {
 
   final TrackModel track;
 
-  String get description => "${track.trackCount} song(s)";
+  String get description =>
+      "${track.artistName} · ${track.primaryGenreName} · ${track.trackCount} song(s)";
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +47,10 @@ class TrackListHeader extends StatelessWidget {
                 Text(
                   description,
                   style: TextStyle(
-                      color: Colors.grey.shade100,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500),
+                    color: Colors.grey.shade300,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
                   maxLines: 3,
                 ),
               ],

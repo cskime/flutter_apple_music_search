@@ -101,6 +101,7 @@ class _TrackListItemState extends State<TrackListItem> {
           widget.track.artistName,
           style: TextStyle(
             color: Colors.grey.shade300,
+            fontSize: 12,
           ),
         ),
         trailing: SizedBox(

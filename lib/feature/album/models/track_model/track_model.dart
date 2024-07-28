@@ -15,6 +15,7 @@ class TrackModel with _$TrackModel {
     required int trackNumber,
     required String previewUrl,
     required String releaseDate,
+    required String primaryGenreName,
     required int trackCount,
     required bool isStreamable,
   }) = _TrackModel;

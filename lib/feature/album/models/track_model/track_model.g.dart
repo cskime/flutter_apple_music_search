@@ -17,6 +17,7 @@ _$TrackModelImpl _$$TrackModelImplFromJson(Map<String, dynamic> json) =>
       trackNumber: (json['trackNumber'] as num).toInt(),
       previewUrl: json['previewUrl'] as String,
       releaseDate: json['releaseDate'] as String,
+      primaryGenreName: json['primaryGenreName'] as String,
       trackCount: (json['trackCount'] as num).toInt(),
       isStreamable: json['isStreamable'] as bool,
     );
@@ -32,6 +33,7 @@ Map<String, dynamic> _$$TrackModelImplToJson(_$TrackModelImpl instance) =>
       'trackNumber': instance.trackNumber,
       'previewUrl': instance.previewUrl,
       'releaseDate': instance.releaseDate,
+      'primaryGenreName': instance.primaryGenreName,
       'trackCount': instance.trackCount,
       'isStreamable': instance.isStreamable,
     };
