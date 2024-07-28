@@ -27,9 +27,7 @@ class AlbumsViewModel
       entityType: ItunesApiEntityType.album,
     );
     return result.results
-        .where((json) =>
-            json["wrapperType"] == "collection" &&
-            json["collectionExplicitness"] == "cleaned")
+        .where((json) => json["wrapperType"] == "collection")
         .map((json) => AlbumModel.fromJson(json))
         .toList()
       ..sort(_sortForYear);
