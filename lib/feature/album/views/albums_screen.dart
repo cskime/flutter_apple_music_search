@@ -60,8 +60,6 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
   void _onPageChanged(int value) {
     setState(() {
       _currentPageIndex = value;
-      _currentAlbumId =
-          ref.read(viewModelProvider.notifier).albumIdAtIndex(value);
     });
   }
 
