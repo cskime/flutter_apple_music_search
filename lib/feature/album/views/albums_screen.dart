@@ -54,11 +54,7 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
   }
 
   void _onBackPressed() {
-    if (_showAlbumTracks) {
-      _showsTrack(false);
-    } else {
-      Navigator.of(context).pop();
-    }
+    Navigator.of(context).pop();
   }
 
   void _onPageChanged(int value) {
@@ -79,10 +75,6 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
 
   void _onVerticalDragEnd(DragEndDetails details) {
     _dragging = false;
-  }
-
-  void _onShowAlbumPressed() {
-    _showsTrack(false);
   }
 
   void _onShowTrackPressed() {
@@ -135,6 +127,9 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
           onPressed: _onBackPressed,
+        )._animateFade(
+          forward: _showAlbumTracks,
+          reverse: false,
         ),
       ),
       body: GestureDetector(
@@ -206,10 +201,7 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
             )._animatePageY(
                 context: context, forward: _showAlbumTracks, reverse: false),
             if (_currentAlbumId != null)
-              TracksScreen(
-                albumId: _currentAlbumId!,
-                onShowAlbumPressed: _onShowAlbumPressed,
-              )._animatePageY(
+              TracksScreen(albumId: _currentAlbumId!)._animatePageY(
                 context: context,
                 forward: _showAlbumTracks,
                 reverse: true,
@@ -222,6 +214,21 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
 }
 
 extension VerticalMoveAnimate on Widget {
+  Animate _animateFade({
+    required bool forward,
+    required bool reverse,
+  }) {
+    return animate(
+      autoPlay: false,
+      target: forward ? 1 : 0,
+    ).fade(
+      begin: reverse ? 0 : 1,
+      end: reverse ? 1 : 0,
+      duration: 1.seconds,
+      curve: Curves.easeInOut,
+    );
+  }
+
   Animate _animatePageY({
     required BuildContext context,
     required bool forward,

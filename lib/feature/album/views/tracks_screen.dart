@@ -9,11 +9,9 @@ class TracksScreen extends ConsumerStatefulWidget {
   const TracksScreen({
     super.key,
     required this.albumId,
-    required this.onShowAlbumPressed,
   });
 
   final int albumId;
-  final void Function() onShowAlbumPressed;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _TracksScreenState();
