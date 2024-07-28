@@ -98,7 +98,9 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
 
     if (state.isLoading) {
       return const Center(
-        child: CircularProgressIndicator.adaptive(),
+        child: CircularProgressIndicator.adaptive(
+          backgroundColor: Colors.white,
+        ),
       );
     }
 
@@ -160,13 +162,15 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
                 ),
               ),
             ),
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 10,
-                sigmaY: 10,
-              ),
-              child: Container(
-                color: Colors.black.withOpacity(0.3),
+            ClipRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 10,
+                  sigmaY: 10,
+                ),
+                child: Container(
+                  color: Colors.black.withOpacity(0.3),
+                ),
               ),
             ),
             PageView.builder(

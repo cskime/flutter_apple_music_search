@@ -82,7 +82,9 @@ class _TracksScreenState extends ConsumerState<TracksScreen> {
             child: Text(error.toString()),
           ),
           loading: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
+            child: CircularProgressIndicator.adaptive(
+              backgroundColor: Colors.white,
+            ),
           ),
         );
   }
