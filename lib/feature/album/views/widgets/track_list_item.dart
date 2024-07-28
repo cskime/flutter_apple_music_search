@@ -25,13 +25,17 @@ class TrackListItem extends StatefulWidget {
 class _TrackListItemState extends State<TrackListItem> {
   AnimationController? _animationController;
 
+  bool _titleOverflows = false;
+
+  bool get _shouldAnimateMarquee => _titleOverflows && widget.selected;
+
   void _onAnimationInit(AnimationController controller) {
     _animationController = controller;
   }
 
   void _onAnimationComplete(AnimationController controller) {
     controller.value = 0;
-    if (widget.selected) {
+    if (_shouldAnimateMarquee) {
       controller.forward();
     }
   }
@@ -71,9 +75,8 @@ class _TrackListItemState extends State<TrackListItem> {
         ),
         title: LayoutBuilder(
           builder: (context, constraints) {
-            final overflows = constraints.maxWidth < titleWidth;
-            final text = titleText + (overflows ? titleText : "");
-
+            _titleOverflows = constraints.maxWidth < titleWidth;
+            final text = titleText + (_titleOverflows ? titleText : "");
             return ClipRect(
               clipBehavior: Clip.hardEdge,
               child: Text(
@@ -85,7 +88,7 @@ class _TrackListItemState extends State<TrackListItem> {
               )
                   .animate(
                     autoPlay: false,
-                    target: overflows && widget.selected ? 1 : 0,
+                    target: _shouldAnimateMarquee ? 1 : 0,
                     onInit: _onAnimationInit,
                     onComplete: _onAnimationComplete,
                   )
