@@ -41,6 +41,7 @@ dependencies:
   json_annotation: ^4.9.0
   http: ^1.2.2
   intl: ^0.19.0
+  just_audio: ^0.9.37
 
 dev_dependencies:
   flutter_test:
