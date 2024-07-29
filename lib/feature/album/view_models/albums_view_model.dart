@@ -22,15 +22,15 @@ class AlbumsViewModel
   @override
   FutureOr<List<AlbumModel>> build(int arg) async {
     _api = ref.read(itunesApiProvider);
-    final result = await _api.lookup(
-      id: arg,
-      entityType: ItunesApiEntityType.album,
+    return _api.lookup(id: arg, entityType: ItunesApiEntityType.album).then(
+      (value) {
+        return value.results
+            .where((json) => json["wrapperType"] == "collection")
+            .map((json) => AlbumModel.fromJson(json))
+            .toList()
+          ..sort(_sortForYear);
+      },
     );
-    return result.results
-        .where((json) => json["wrapperType"] == "collection")
-        .map((json) => AlbumModel.fromJson(json))
-        .toList()
-      ..sort(_sortForYear);
   }
 
   int? albumIdAtIndex(int index) {

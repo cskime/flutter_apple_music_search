@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:apple_music_search/feature/album/services/release_date_formatter.dart';
 import 'package:apple_music_search/feature/album/view_models/albums_view_model.dart';
 import 'package:apple_music_search/feature/album/views/tracks_screen.dart';
-import 'package:apple_music_search/feature/album/views/widgets/album_cover.dart';
-import 'package:apple_music_search/feature/album/views/widgets/album_to_track_button.dart';
+import 'package:apple_music_search/feature/album/views/widgets/album/album_cover.dart';
+import 'package:apple_music_search/feature/album/views/widgets/album/album_to_track_button.dart';
 import 'package:apple_music_search/feature/search/models/artist/artist_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -23,9 +23,6 @@ class AlbumsScreen extends ConsumerStatefulWidget {
 }
 
 class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
-  late final viewModelProvider =
-      albumsViewModelProvider(widget.artist.artistId);
-
   final _pageController = PageController(
     viewportFraction: 0.7,
   );
@@ -91,38 +88,12 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _currentAlbumId =
-        ref.read(viewModelProvider.notifier).albumIdAtIndex(_currentPageIndex);
-
-    final state = ref.watch(viewModelProvider);
-
-    if (state.isLoading) {
-      return const Center(
-        child: CircularProgressIndicator.adaptive(
-          backgroundColor: Colors.white,
-        ),
-      );
-    }
-
-    if (state.hasError) {
-      return Center(
-        child: Text(state.error.toString()),
-      );
-    }
-
-    final albums = state.value ?? [];
-    if (albums.isEmpty) {
-      return const Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text("No Albums founded"),
-          ],
-        ),
-      );
-    }
+    _currentAlbumId = ref
+        .read(albumsViewModelProvider(widget.artist.artistId).notifier)
+        .albumIdAtIndex(_currentPageIndex);
 
     return Scaffold(
+      backgroundColor: Colors.black,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -143,85 +114,103 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
           reverse: false,
         ),
       ),
-      body: GestureDetector(
-        onVerticalDragUpdate: _onVerticalDragUpdate,
-        onVerticalDragEnd: _onVerticalDragEnd,
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: AnimatedSwitcher(
-                duration: 250.ms,
-                child: LayoutBuilder(
-                  key: ValueKey(_currentPageIndex),
-                  builder: (context, constraints) => Image.network(
-                    albums[_currentPageIndex].artworkUrl100,
-                    fit: BoxFit.cover,
-                    width: constraints.maxWidth,
-                    height: constraints.maxHeight,
-                  ),
-                ),
-              ),
-            ),
-            ClipRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(
-                  sigmaX: 10,
-                  sigmaY: 10,
-                ),
-                child: Container(
-                  color: Colors.black.withOpacity(0.3),
-                ),
-              ),
-            ),
-            PageView.builder(
-              controller: _pageController,
-              itemCount: albums.length,
-              itemBuilder: (context, index) {
-                final album = albums[index];
-                return Center(
-                  child: ValueListenableBuilder(
-                    valueListenable: _scaleOffset,
-                    builder: (context, value, child) {
-                      final difference = (value - index).abs() * 0.2;
-                      final scale = 1 - difference;
-                      return Transform.scale(
-                        scale: scale,
-                        child: AlbumCover(
-                          coverUrlString: album.artworkUrl100,
-                          albumName: album.collectionName,
-                          releaseYear: ReleaseDateFormatter()
-                              .dateTime(album.releaseDate)
-                              .year
-                              .toString(),
-                          genre: album.primaryGenreName,
+      body: ref.watch(albumsViewModelProvider(widget.artist.artistId)).when(
+            data: (data) => data.isEmpty
+                ? const Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text("No Albums founded"),
+                      ],
+                    ),
+                  )
+                : GestureDetector(
+                    onVerticalDragUpdate: _onVerticalDragUpdate,
+                    onVerticalDragEnd: _onVerticalDragEnd,
+                    child: Stack(
+                      children: [
+                        AnimatedSwitcher(
+                          duration: 250.ms,
+                          child: LayoutBuilder(
+                            key: ValueKey(_currentPageIndex),
+                            builder: (context, constraints) => Image.network(
+                              data[_currentPageIndex].artworkUrl100,
+                              fit: BoxFit.cover,
+                              width: constraints.maxWidth,
+                              height: constraints.maxHeight,
+                            ),
+                          ),
                         ),
-                      );
-                    },
+                        ClipRect(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                            child: Container(
+                              color: Colors.black.withOpacity(0.3),
+                            ),
+                          ),
+                        ),
+                        PageView.builder(
+                          controller: _pageController,
+                          itemCount: data.length,
+                          itemBuilder: (context, index) {
+                            final album = data[index];
+                            return Center(
+                              child: ValueListenableBuilder(
+                                valueListenable: _scaleOffset,
+                                builder: (context, value, child) {
+                                  final difference =
+                                      (value - index).abs() * 0.2;
+                                  final scale = 1 - difference;
+                                  return Transform.scale(
+                                    scale: scale,
+                                    child: AlbumCover(
+                                      coverUrlString: album.artworkUrl100,
+                                      albumName: album.collectionName,
+                                      releaseYear: ReleaseDateFormatter()
+                                          .dateTime(album.releaseDate)
+                                          .year
+                                          .toString(),
+                                      genre: album.primaryGenreName,
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                          onPageChanged: _onPageChanged,
+                        )._animatePageY(
+                          context: context,
+                          forward: _showAlbumTracks,
+                          reverse: false,
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SafeArea(
+                            child: AlbumToTrackButton(
+                                onPressed: _onShowTrackPressed),
+                          ),
+                        )._animatePageY(
+                            context: context,
+                            forward: _showAlbumTracks,
+                            reverse: false),
+                        if (_currentAlbumId != null)
+                          TracksScreen(albumId: _currentAlbumId!)._animatePageY(
+                            context: context,
+                            forward: _showAlbumTracks,
+                            reverse: true,
+                          ),
+                      ],
+                    ),
                   ),
-                );
-              },
-              onPageChanged: _onPageChanged,
-            )._animatePageY(
-              context: context,
-              forward: _showAlbumTracks,
-              reverse: false,
+            error: (error, stackTrace) => Center(
+              child: Text(error.toString()),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SafeArea(
-                child: AlbumToTrackButton(onPressed: _onShowTrackPressed),
+            loading: () => const Center(
+              child: CircularProgressIndicator.adaptive(
+                backgroundColor: Colors.white,
               ),
-            )._animatePageY(
-                context: context, forward: _showAlbumTracks, reverse: false),
-            if (_currentAlbumId != null)
-              TracksScreen(albumId: _currentAlbumId!)._animatePageY(
-                context: context,
-                forward: _showAlbumTracks,
-                reverse: true,
-              ),
-          ],
-        ),
-      ),
+            ),
+          ),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:apple_music_search/feature/album/models/track_model/track_model.dart';
 import 'package:apple_music_search/feature/album/view_models/tracks_view_model.dart';
-import 'package:apple_music_search/feature/album/views/widgets/track_list_header.dart';
-import 'package:apple_music_search/feature/album/views/widgets/track_list_item.dart';
+import 'package:apple_music_search/feature/album/views/widgets/track/track_list_header.dart';
+import 'package:apple_music_search/feature/album/views/widgets/track/track_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

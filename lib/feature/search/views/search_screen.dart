@@ -48,6 +48,18 @@ class _SearchScreenState extends ConsumerState<SearchScreen>
       MaterialPageRoute(
         builder: (context) => AlbumsScreen(artist),
       ),
+
+      // PageRouteBuilder(
+      //   pageBuilder: (context, animation, secondaryAnimation) {
+      //     return ScaleTransition(
+      //       scale: Tween(begin: 0.8, end: 1.0).animate(animation),
+      //       child: FadeTransition(
+      //         opacity: animation,
+      //         child: AlbumsScreen(artist),
+      //       ),
+      //     );
+      //   },
+      // ),
     );
     setState(() {
       _selectedArtis = artist;
