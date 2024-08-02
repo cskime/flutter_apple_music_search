@@ -1,28 +1,28 @@
-import 'package:apple_music_search/feature/album/models/track_model/track_model.dart';
+import 'package:apple_music_search/layer/domain/entity/song/song.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class TrackListItem extends StatefulWidget {
-  const TrackListItem({
+class SongListItem extends StatefulWidget {
+  const SongListItem({
     super.key,
-    required this.track,
+    required this.song,
     required this.selected,
     required this.playing,
     required this.progress,
     required this.onPlayPressed,
   });
 
-  final TrackModel track;
+  final Song song;
   final bool selected;
   final bool playing;
   final Stream<double>? progress;
-  final void Function(TrackModel track) onPlayPressed;
+  final void Function(Song song) onPlayPressed;
 
   @override
-  State<TrackListItem> createState() => _TrackListItemState();
+  State<SongListItem> createState() => _SongListItemState();
 }
 
-class _TrackListItemState extends State<TrackListItem> {
+class _SongListItemState extends State<SongListItem> {
   AnimationController? _animationController;
 
   bool _titleOverflows = false;
@@ -46,7 +46,7 @@ class _TrackListItemState extends State<TrackListItem> {
       _animationController?.reset();
     }
 
-    final titleText = "${widget.track.trackName}      ";
+    final titleText = "${widget.song.title}      ";
     final titleTextStyle = TextStyle(
       color: Colors.grey.shade100,
       fontSize: 16,
@@ -68,7 +68,7 @@ class _TrackListItemState extends State<TrackListItem> {
             borderRadius: BorderRadius.circular(8),
           ),
           clipBehavior: Clip.hardEdge,
-          child: Image.network(widget.track.artworkUrl60),
+          child: Image.network(widget.song.albumCoverImageUrl),
         ),
         title: LayoutBuilder(
           builder: (context, constraints) {
@@ -98,7 +98,7 @@ class _TrackListItemState extends State<TrackListItem> {
           },
         ),
         subtitle: Text(
-          widget.track.artistName,
+          widget.song.artistName,
           style: TextStyle(
             color: Colors.grey.shade300,
             fontSize: 12,
@@ -125,10 +125,10 @@ class _TrackListItemState extends State<TrackListItem> {
                 ),
               ),
               Opacity(
-                opacity: widget.track.isStreamable ? 1 : 0.5,
+                opacity: widget.song.isStreamable ? 1 : 0.5,
                 child: IconButton(
-                  onPressed: widget.track.isStreamable
-                      ? () => widget.onPlayPressed(widget.track)
+                  onPressed: widget.song.isStreamable
+                      ? () => widget.onPlayPressed(widget.song)
                       : null,
                   icon: Icon(
                     widget.playing

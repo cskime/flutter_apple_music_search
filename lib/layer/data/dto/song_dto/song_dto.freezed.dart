@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'track_model.dart';
+part of 'song_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,36 +14,32 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-TrackModel _$TrackModelFromJson(Map<String, dynamic> json) {
-  return _TrackModel.fromJson(json);
+SongDto _$SongDtoFromJson(Map<String, dynamic> json) {
+  return _SongDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TrackModel {
+mixin _$SongDto {
   int get trackId => throw _privateConstructorUsedError;
   String get trackName => throw _privateConstructorUsedError;
   String get collectionName => throw _privateConstructorUsedError;
   String get artistName => throw _privateConstructorUsedError;
   String get artworkUrl60 => throw _privateConstructorUsedError;
-  String get artworkUrl100 => throw _privateConstructorUsedError;
   int get trackNumber => throw _privateConstructorUsedError;
   String get previewUrl => throw _privateConstructorUsedError;
   String get releaseDate => throw _privateConstructorUsedError;
   String get primaryGenreName => throw _privateConstructorUsedError;
-  int get trackCount => throw _privateConstructorUsedError;
   bool get isStreamable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TrackModelCopyWith<TrackModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SongDtoCopyWith<SongDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TrackModelCopyWith<$Res> {
-  factory $TrackModelCopyWith(
-          TrackModel value, $Res Function(TrackModel) then) =
-      _$TrackModelCopyWithImpl<$Res, TrackModel>;
+abstract class $SongDtoCopyWith<$Res> {
+  factory $SongDtoCopyWith(SongDto value, $Res Function(SongDto) then) =
+      _$SongDtoCopyWithImpl<$Res, SongDto>;
   @useResult
   $Res call(
       {int trackId,
@@ -51,19 +47,17 @@ abstract class $TrackModelCopyWith<$Res> {
       String collectionName,
       String artistName,
       String artworkUrl60,
-      String artworkUrl100,
       int trackNumber,
       String previewUrl,
       String releaseDate,
       String primaryGenreName,
-      int trackCount,
       bool isStreamable});
 }
 
 /// @nodoc
-class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
-    implements $TrackModelCopyWith<$Res> {
-  _$TrackModelCopyWithImpl(this._value, this._then);
+class _$SongDtoCopyWithImpl<$Res, $Val extends SongDto>
+    implements $SongDtoCopyWith<$Res> {
+  _$SongDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -78,12 +72,10 @@ class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
     Object? collectionName = null,
     Object? artistName = null,
     Object? artworkUrl60 = null,
-    Object? artworkUrl100 = null,
     Object? trackNumber = null,
     Object? previewUrl = null,
     Object? releaseDate = null,
     Object? primaryGenreName = null,
-    Object? trackCount = null,
     Object? isStreamable = null,
   }) {
     return _then(_value.copyWith(
@@ -107,10 +99,6 @@ class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
           ? _value.artworkUrl60
           : artworkUrl60 // ignore: cast_nullable_to_non_nullable
               as String,
-      artworkUrl100: null == artworkUrl100
-          ? _value.artworkUrl100
-          : artworkUrl100 // ignore: cast_nullable_to_non_nullable
-              as String,
       trackNumber: null == trackNumber
           ? _value.trackNumber
           : trackNumber // ignore: cast_nullable_to_non_nullable
@@ -127,10 +115,6 @@ class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
           ? _value.primaryGenreName
           : primaryGenreName // ignore: cast_nullable_to_non_nullable
               as String,
-      trackCount: null == trackCount
-          ? _value.trackCount
-          : trackCount // ignore: cast_nullable_to_non_nullable
-              as int,
       isStreamable: null == isStreamable
           ? _value.isStreamable
           : isStreamable // ignore: cast_nullable_to_non_nullable
@@ -140,11 +124,10 @@ class _$TrackModelCopyWithImpl<$Res, $Val extends TrackModel>
 }
 
 /// @nodoc
-abstract class _$$TrackModelImplCopyWith<$Res>
-    implements $TrackModelCopyWith<$Res> {
-  factory _$$TrackModelImplCopyWith(
-          _$TrackModelImpl value, $Res Function(_$TrackModelImpl) then) =
-      __$$TrackModelImplCopyWithImpl<$Res>;
+abstract class _$$SongDtoImplCopyWith<$Res> implements $SongDtoCopyWith<$Res> {
+  factory _$$SongDtoImplCopyWith(
+          _$SongDtoImpl value, $Res Function(_$SongDtoImpl) then) =
+      __$$SongDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -153,21 +136,19 @@ abstract class _$$TrackModelImplCopyWith<$Res>
       String collectionName,
       String artistName,
       String artworkUrl60,
-      String artworkUrl100,
       int trackNumber,
       String previewUrl,
       String releaseDate,
       String primaryGenreName,
-      int trackCount,
       bool isStreamable});
 }
 
 /// @nodoc
-class __$$TrackModelImplCopyWithImpl<$Res>
-    extends _$TrackModelCopyWithImpl<$Res, _$TrackModelImpl>
-    implements _$$TrackModelImplCopyWith<$Res> {
-  __$$TrackModelImplCopyWithImpl(
-      _$TrackModelImpl _value, $Res Function(_$TrackModelImpl) _then)
+class __$$SongDtoImplCopyWithImpl<$Res>
+    extends _$SongDtoCopyWithImpl<$Res, _$SongDtoImpl>
+    implements _$$SongDtoImplCopyWith<$Res> {
+  __$$SongDtoImplCopyWithImpl(
+      _$SongDtoImpl _value, $Res Function(_$SongDtoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -178,15 +159,13 @@ class __$$TrackModelImplCopyWithImpl<$Res>
     Object? collectionName = null,
     Object? artistName = null,
     Object? artworkUrl60 = null,
-    Object? artworkUrl100 = null,
     Object? trackNumber = null,
     Object? previewUrl = null,
     Object? releaseDate = null,
     Object? primaryGenreName = null,
-    Object? trackCount = null,
     Object? isStreamable = null,
   }) {
-    return _then(_$TrackModelImpl(
+    return _then(_$SongDtoImpl(
       trackId: null == trackId
           ? _value.trackId
           : trackId // ignore: cast_nullable_to_non_nullable
@@ -207,10 +186,6 @@ class __$$TrackModelImplCopyWithImpl<$Res>
           ? _value.artworkUrl60
           : artworkUrl60 // ignore: cast_nullable_to_non_nullable
               as String,
-      artworkUrl100: null == artworkUrl100
-          ? _value.artworkUrl100
-          : artworkUrl100 // ignore: cast_nullable_to_non_nullable
-              as String,
       trackNumber: null == trackNumber
           ? _value.trackNumber
           : trackNumber // ignore: cast_nullable_to_non_nullable
@@ -227,10 +202,6 @@ class __$$TrackModelImplCopyWithImpl<$Res>
           ? _value.primaryGenreName
           : primaryGenreName // ignore: cast_nullable_to_non_nullable
               as String,
-      trackCount: null == trackCount
-          ? _value.trackCount
-          : trackCount // ignore: cast_nullable_to_non_nullable
-              as int,
       isStreamable: null == isStreamable
           ? _value.isStreamable
           : isStreamable // ignore: cast_nullable_to_non_nullable
@@ -241,23 +212,21 @@ class __$$TrackModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TrackModelImpl implements _TrackModel {
-  _$TrackModelImpl(
+class _$SongDtoImpl implements _SongDto {
+  _$SongDtoImpl(
       {required this.trackId,
       required this.trackName,
       required this.collectionName,
       required this.artistName,
       required this.artworkUrl60,
-      required this.artworkUrl100,
       required this.trackNumber,
       required this.previewUrl,
       required this.releaseDate,
       required this.primaryGenreName,
-      required this.trackCount,
       required this.isStreamable});
 
-  factory _$TrackModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TrackModelImplFromJson(json);
+  factory _$SongDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SongDtoImplFromJson(json);
 
   @override
   final int trackId;
@@ -270,8 +239,6 @@ class _$TrackModelImpl implements _TrackModel {
   @override
   final String artworkUrl60;
   @override
-  final String artworkUrl100;
-  @override
   final int trackNumber;
   @override
   final String previewUrl;
@@ -280,20 +247,18 @@ class _$TrackModelImpl implements _TrackModel {
   @override
   final String primaryGenreName;
   @override
-  final int trackCount;
-  @override
   final bool isStreamable;
 
   @override
   String toString() {
-    return 'TrackModel(trackId: $trackId, trackName: $trackName, collectionName: $collectionName, artistName: $artistName, artworkUrl60: $artworkUrl60, artworkUrl100: $artworkUrl100, trackNumber: $trackNumber, previewUrl: $previewUrl, releaseDate: $releaseDate, primaryGenreName: $primaryGenreName, trackCount: $trackCount, isStreamable: $isStreamable)';
+    return 'SongDto(trackId: $trackId, trackName: $trackName, collectionName: $collectionName, artistName: $artistName, artworkUrl60: $artworkUrl60, trackNumber: $trackNumber, previewUrl: $previewUrl, releaseDate: $releaseDate, primaryGenreName: $primaryGenreName, isStreamable: $isStreamable)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TrackModelImpl &&
+            other is _$SongDtoImpl &&
             (identical(other.trackId, trackId) || other.trackId == trackId) &&
             (identical(other.trackName, trackName) ||
                 other.trackName == trackName) &&
@@ -303,8 +268,6 @@ class _$TrackModelImpl implements _TrackModel {
                 other.artistName == artistName) &&
             (identical(other.artworkUrl60, artworkUrl60) ||
                 other.artworkUrl60 == artworkUrl60) &&
-            (identical(other.artworkUrl100, artworkUrl100) ||
-                other.artworkUrl100 == artworkUrl100) &&
             (identical(other.trackNumber, trackNumber) ||
                 other.trackNumber == trackNumber) &&
             (identical(other.previewUrl, previewUrl) ||
@@ -313,8 +276,6 @@ class _$TrackModelImpl implements _TrackModel {
                 other.releaseDate == releaseDate) &&
             (identical(other.primaryGenreName, primaryGenreName) ||
                 other.primaryGenreName == primaryGenreName) &&
-            (identical(other.trackCount, trackCount) ||
-                other.trackCount == trackCount) &&
             (identical(other.isStreamable, isStreamable) ||
                 other.isStreamable == isStreamable));
   }
@@ -328,45 +289,40 @@ class _$TrackModelImpl implements _TrackModel {
       collectionName,
       artistName,
       artworkUrl60,
-      artworkUrl100,
       trackNumber,
       previewUrl,
       releaseDate,
       primaryGenreName,
-      trackCount,
       isStreamable);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TrackModelImplCopyWith<_$TrackModelImpl> get copyWith =>
-      __$$TrackModelImplCopyWithImpl<_$TrackModelImpl>(this, _$identity);
+  _$$SongDtoImplCopyWith<_$SongDtoImpl> get copyWith =>
+      __$$SongDtoImplCopyWithImpl<_$SongDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TrackModelImplToJson(
+    return _$$SongDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _TrackModel implements TrackModel {
-  factory _TrackModel(
+abstract class _SongDto implements SongDto {
+  factory _SongDto(
       {required final int trackId,
       required final String trackName,
       required final String collectionName,
       required final String artistName,
       required final String artworkUrl60,
-      required final String artworkUrl100,
       required final int trackNumber,
       required final String previewUrl,
       required final String releaseDate,
       required final String primaryGenreName,
-      required final int trackCount,
-      required final bool isStreamable}) = _$TrackModelImpl;
+      required final bool isStreamable}) = _$SongDtoImpl;
 
-  factory _TrackModel.fromJson(Map<String, dynamic> json) =
-      _$TrackModelImpl.fromJson;
+  factory _SongDto.fromJson(Map<String, dynamic> json) = _$SongDtoImpl.fromJson;
 
   @override
   int get trackId;
@@ -379,8 +335,6 @@ abstract class _TrackModel implements TrackModel {
   @override
   String get artworkUrl60;
   @override
-  String get artworkUrl100;
-  @override
   int get trackNumber;
   @override
   String get previewUrl;
@@ -389,11 +343,9 @@ abstract class _TrackModel implements TrackModel {
   @override
   String get primaryGenreName;
   @override
-  int get trackCount;
-  @override
   bool get isStreamable;
   @override
   @JsonKey(ignore: true)
-  _$$TrackModelImplCopyWith<_$TrackModelImpl> get copyWith =>
+  _$$SongDtoImplCopyWith<_$SongDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

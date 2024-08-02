@@ -8,8 +8,10 @@ part 'album_dto.g.dart';
 class AlbumDto with _$AlbumDto {
   factory AlbumDto({
     required int collectionId,
+    required String artistName,
     required String collectionName,
     required String artworkUrl100,
+    required int trackCount,
     required String releaseDate,
     required String primaryGenreName,
   }) = _AlbumDto;
@@ -22,7 +24,9 @@ extension AlbumDtoToEntity on AlbumDto {
   Album toEntity() => Album(
         id: collectionId,
         title: collectionName,
+        artistName: artistName,
         coverImageUrl: artworkUrl100,
+        numberOfSongs: trackCount,
         releaseDate: releaseDate,
         primaryGenreName: primaryGenreName,
       );

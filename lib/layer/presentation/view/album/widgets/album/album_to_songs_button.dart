@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AlbumToTrackButton extends StatelessWidget {
-  const AlbumToTrackButton({
+class AlbumToSongsButton extends StatelessWidget {
+  const AlbumToSongsButton({
     super.key,
     required this.onPressed,
   });

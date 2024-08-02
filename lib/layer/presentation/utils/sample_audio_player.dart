@@ -1,6 +1,6 @@
 import 'package:just_audio/just_audio.dart';
 
-class SampleAudioService {
+class SampleAudioPlayer {
   AudioPlayer? _audioPlayer;
 
   Future<Stream<double>> play(String urlString) async {

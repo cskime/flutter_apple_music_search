@@ -21,8 +21,10 @@ AlbumDto _$AlbumDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AlbumDto {
   int get collectionId => throw _privateConstructorUsedError;
+  String get artistName => throw _privateConstructorUsedError;
   String get collectionName => throw _privateConstructorUsedError;
   String get artworkUrl100 => throw _privateConstructorUsedError;
+  int get trackCount => throw _privateConstructorUsedError;
   String get releaseDate => throw _privateConstructorUsedError;
   String get primaryGenreName => throw _privateConstructorUsedError;
 
@@ -39,8 +41,10 @@ abstract class $AlbumDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {int collectionId,
+      String artistName,
       String collectionName,
       String artworkUrl100,
+      int trackCount,
       String releaseDate,
       String primaryGenreName});
 }
@@ -59,8 +63,10 @@ class _$AlbumDtoCopyWithImpl<$Res, $Val extends AlbumDto>
   @override
   $Res call({
     Object? collectionId = null,
+    Object? artistName = null,
     Object? collectionName = null,
     Object? artworkUrl100 = null,
+    Object? trackCount = null,
     Object? releaseDate = null,
     Object? primaryGenreName = null,
   }) {
@@ -69,6 +75,10 @@ class _$AlbumDtoCopyWithImpl<$Res, $Val extends AlbumDto>
           ? _value.collectionId
           : collectionId // ignore: cast_nullable_to_non_nullable
               as int,
+      artistName: null == artistName
+          ? _value.artistName
+          : artistName // ignore: cast_nullable_to_non_nullable
+              as String,
       collectionName: null == collectionName
           ? _value.collectionName
           : collectionName // ignore: cast_nullable_to_non_nullable
@@ -77,6 +87,10 @@ class _$AlbumDtoCopyWithImpl<$Res, $Val extends AlbumDto>
           ? _value.artworkUrl100
           : artworkUrl100 // ignore: cast_nullable_to_non_nullable
               as String,
+      trackCount: null == trackCount
+          ? _value.trackCount
+          : trackCount // ignore: cast_nullable_to_non_nullable
+              as int,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -99,8 +113,10 @@ abstract class _$$AlbumDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {int collectionId,
+      String artistName,
       String collectionName,
       String artworkUrl100,
+      int trackCount,
       String releaseDate,
       String primaryGenreName});
 }
@@ -117,8 +133,10 @@ class __$$AlbumDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? collectionId = null,
+    Object? artistName = null,
     Object? collectionName = null,
     Object? artworkUrl100 = null,
+    Object? trackCount = null,
     Object? releaseDate = null,
     Object? primaryGenreName = null,
   }) {
@@ -127,6 +145,10 @@ class __$$AlbumDtoImplCopyWithImpl<$Res>
           ? _value.collectionId
           : collectionId // ignore: cast_nullable_to_non_nullable
               as int,
+      artistName: null == artistName
+          ? _value.artistName
+          : artistName // ignore: cast_nullable_to_non_nullable
+              as String,
       collectionName: null == collectionName
           ? _value.collectionName
           : collectionName // ignore: cast_nullable_to_non_nullable
@@ -135,6 +157,10 @@ class __$$AlbumDtoImplCopyWithImpl<$Res>
           ? _value.artworkUrl100
           : artworkUrl100 // ignore: cast_nullable_to_non_nullable
               as String,
+      trackCount: null == trackCount
+          ? _value.trackCount
+          : trackCount // ignore: cast_nullable_to_non_nullable
+              as int,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -152,8 +178,10 @@ class __$$AlbumDtoImplCopyWithImpl<$Res>
 class _$AlbumDtoImpl implements _AlbumDto {
   _$AlbumDtoImpl(
       {required this.collectionId,
+      required this.artistName,
       required this.collectionName,
       required this.artworkUrl100,
+      required this.trackCount,
       required this.releaseDate,
       required this.primaryGenreName});
 
@@ -163,9 +191,13 @@ class _$AlbumDtoImpl implements _AlbumDto {
   @override
   final int collectionId;
   @override
+  final String artistName;
+  @override
   final String collectionName;
   @override
   final String artworkUrl100;
+  @override
+  final int trackCount;
   @override
   final String releaseDate;
   @override
@@ -173,7 +205,7 @@ class _$AlbumDtoImpl implements _AlbumDto {
 
   @override
   String toString() {
-    return 'AlbumDto(collectionId: $collectionId, collectionName: $collectionName, artworkUrl100: $artworkUrl100, releaseDate: $releaseDate, primaryGenreName: $primaryGenreName)';
+    return 'AlbumDto(collectionId: $collectionId, artistName: $artistName, collectionName: $collectionName, artworkUrl100: $artworkUrl100, trackCount: $trackCount, releaseDate: $releaseDate, primaryGenreName: $primaryGenreName)';
   }
 
   @override
@@ -183,10 +215,14 @@ class _$AlbumDtoImpl implements _AlbumDto {
             other is _$AlbumDtoImpl &&
             (identical(other.collectionId, collectionId) ||
                 other.collectionId == collectionId) &&
+            (identical(other.artistName, artistName) ||
+                other.artistName == artistName) &&
             (identical(other.collectionName, collectionName) ||
                 other.collectionName == collectionName) &&
             (identical(other.artworkUrl100, artworkUrl100) ||
                 other.artworkUrl100 == artworkUrl100) &&
+            (identical(other.trackCount, trackCount) ||
+                other.trackCount == trackCount) &&
             (identical(other.releaseDate, releaseDate) ||
                 other.releaseDate == releaseDate) &&
             (identical(other.primaryGenreName, primaryGenreName) ||
@@ -195,8 +231,8 @@ class _$AlbumDtoImpl implements _AlbumDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, collectionId, collectionName,
-      artworkUrl100, releaseDate, primaryGenreName);
+  int get hashCode => Object.hash(runtimeType, collectionId, artistName,
+      collectionName, artworkUrl100, trackCount, releaseDate, primaryGenreName);
 
   @JsonKey(ignore: true)
   @override
@@ -215,8 +251,10 @@ class _$AlbumDtoImpl implements _AlbumDto {
 abstract class _AlbumDto implements AlbumDto {
   factory _AlbumDto(
       {required final int collectionId,
+      required final String artistName,
       required final String collectionName,
       required final String artworkUrl100,
+      required final int trackCount,
       required final String releaseDate,
       required final String primaryGenreName}) = _$AlbumDtoImpl;
 
@@ -226,9 +264,13 @@ abstract class _AlbumDto implements AlbumDto {
   @override
   int get collectionId;
   @override
+  String get artistName;
+  @override
   String get collectionName;
   @override
   String get artworkUrl100;
+  @override
+  int get trackCount;
   @override
   String get releaseDate;
   @override

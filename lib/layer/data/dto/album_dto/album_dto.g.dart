@@ -9,8 +9,10 @@ part of 'album_dto.dart';
 _$AlbumDtoImpl _$$AlbumDtoImplFromJson(Map<String, dynamic> json) =>
     _$AlbumDtoImpl(
       collectionId: (json['collectionId'] as num).toInt(),
+      artistName: json['artistName'] as String,
       collectionName: json['collectionName'] as String,
       artworkUrl100: json['artworkUrl100'] as String,
+      trackCount: (json['trackCount'] as num).toInt(),
       releaseDate: json['releaseDate'] as String,
       primaryGenreName: json['primaryGenreName'] as String,
     );
@@ -18,8 +20,10 @@ _$AlbumDtoImpl _$$AlbumDtoImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$AlbumDtoImplToJson(_$AlbumDtoImpl instance) =>
     <String, dynamic>{
       'collectionId': instance.collectionId,
+      'artistName': instance.artistName,
       'collectionName': instance.collectionName,
       'artworkUrl100': instance.artworkUrl100,
+      'trackCount': instance.trackCount,
       'releaseDate': instance.releaseDate,
       'primaryGenreName': instance.primaryGenreName,
     };

@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Album {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String get artistName => throw _privateConstructorUsedError;
   String get coverImageUrl => throw _privateConstructorUsedError;
+  int get numberOfSongs => throw _privateConstructorUsedError;
   String get releaseDate => throw _privateConstructorUsedError;
   String get primaryGenreName => throw _privateConstructorUsedError;
 
@@ -34,7 +36,9 @@ abstract class $AlbumCopyWith<$Res> {
   $Res call(
       {int id,
       String title,
+      String artistName,
       String coverImageUrl,
+      int numberOfSongs,
       String releaseDate,
       String primaryGenreName});
 }
@@ -54,7 +58,9 @@ class _$AlbumCopyWithImpl<$Res, $Val extends Album>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? artistName = null,
     Object? coverImageUrl = null,
+    Object? numberOfSongs = null,
     Object? releaseDate = null,
     Object? primaryGenreName = null,
   }) {
@@ -67,10 +73,18 @@ class _$AlbumCopyWithImpl<$Res, $Val extends Album>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      artistName: null == artistName
+          ? _value.artistName
+          : artistName // ignore: cast_nullable_to_non_nullable
+              as String,
       coverImageUrl: null == coverImageUrl
           ? _value.coverImageUrl
           : coverImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      numberOfSongs: null == numberOfSongs
+          ? _value.numberOfSongs
+          : numberOfSongs // ignore: cast_nullable_to_non_nullable
+              as int,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -93,7 +107,9 @@ abstract class _$$AlbumImplCopyWith<$Res> implements $AlbumCopyWith<$Res> {
   $Res call(
       {int id,
       String title,
+      String artistName,
       String coverImageUrl,
+      int numberOfSongs,
       String releaseDate,
       String primaryGenreName});
 }
@@ -111,7 +127,9 @@ class __$$AlbumImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? artistName = null,
     Object? coverImageUrl = null,
+    Object? numberOfSongs = null,
     Object? releaseDate = null,
     Object? primaryGenreName = null,
   }) {
@@ -124,10 +142,18 @@ class __$$AlbumImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      artistName: null == artistName
+          ? _value.artistName
+          : artistName // ignore: cast_nullable_to_non_nullable
+              as String,
       coverImageUrl: null == coverImageUrl
           ? _value.coverImageUrl
           : coverImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      numberOfSongs: null == numberOfSongs
+          ? _value.numberOfSongs
+          : numberOfSongs // ignore: cast_nullable_to_non_nullable
+              as int,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -146,7 +172,9 @@ class _$AlbumImpl implements _Album {
   _$AlbumImpl(
       {required this.id,
       required this.title,
+      required this.artistName,
       required this.coverImageUrl,
+      required this.numberOfSongs,
       required this.releaseDate,
       required this.primaryGenreName});
 
@@ -155,7 +183,11 @@ class _$AlbumImpl implements _Album {
   @override
   final String title;
   @override
+  final String artistName;
+  @override
   final String coverImageUrl;
+  @override
+  final int numberOfSongs;
   @override
   final String releaseDate;
   @override
@@ -163,7 +195,7 @@ class _$AlbumImpl implements _Album {
 
   @override
   String toString() {
-    return 'Album(id: $id, title: $title, coverImageUrl: $coverImageUrl, releaseDate: $releaseDate, primaryGenreName: $primaryGenreName)';
+    return 'Album(id: $id, title: $title, artistName: $artistName, coverImageUrl: $coverImageUrl, numberOfSongs: $numberOfSongs, releaseDate: $releaseDate, primaryGenreName: $primaryGenreName)';
   }
 
   @override
@@ -173,8 +205,12 @@ class _$AlbumImpl implements _Album {
             other is _$AlbumImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.artistName, artistName) ||
+                other.artistName == artistName) &&
             (identical(other.coverImageUrl, coverImageUrl) ||
                 other.coverImageUrl == coverImageUrl) &&
+            (identical(other.numberOfSongs, numberOfSongs) ||
+                other.numberOfSongs == numberOfSongs) &&
             (identical(other.releaseDate, releaseDate) ||
                 other.releaseDate == releaseDate) &&
             (identical(other.primaryGenreName, primaryGenreName) ||
@@ -182,8 +218,8 @@ class _$AlbumImpl implements _Album {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, coverImageUrl, releaseDate, primaryGenreName);
+  int get hashCode => Object.hash(runtimeType, id, title, artistName,
+      coverImageUrl, numberOfSongs, releaseDate, primaryGenreName);
 
   @JsonKey(ignore: true)
   @override
@@ -196,7 +232,9 @@ abstract class _Album implements Album {
   factory _Album(
       {required final int id,
       required final String title,
+      required final String artistName,
       required final String coverImageUrl,
+      required final int numberOfSongs,
       required final String releaseDate,
       required final String primaryGenreName}) = _$AlbumImpl;
 
@@ -205,7 +243,11 @@ abstract class _Album implements Album {
   @override
   String get title;
   @override
+  String get artistName;
+  @override
   String get coverImageUrl;
+  @override
+  int get numberOfSongs;
   @override
   String get releaseDate;
   @override

@@ -1,9 +1,11 @@
-import 'package:apple_music_search/feature/album/services/release_date_formatter.dart';
+import 'package:apple_music_search/layer/presentation/utils/release_date_formatter.dart';
 import 'package:apple_music_search/layer/domain/entity/album/album.dart';
+import 'package:apple_music_search/layer/domain/entity/song/song.dart';
 import 'package:apple_music_search/layer/domain/repository/album_repository.dart';
 
 abstract class FetchAlbumUseCase {
   Future<List<Album>> fetchAlbums({required int artistId});
+  Future<List<Song>> fetchSongs({required int albumId});
 }
 
 class FetchAlbumUseCaseImpl extends FetchAlbumUseCase {
@@ -24,5 +26,11 @@ class FetchAlbumUseCaseImpl extends FetchAlbumUseCase {
   Future<List<Album>> fetchAlbums({required int artistId}) async {
     final albums = await albumRepository.fetchAlbums(artistId: artistId);
     return albums..sort(_sortForYear);
+  }
+
+  @override
+  Future<List<Song>> fetchSongs({required int albumId}) async {
+    final songs = await albumRepository.fetchSongs(albumId: albumId);
+    return songs;
   }
 }

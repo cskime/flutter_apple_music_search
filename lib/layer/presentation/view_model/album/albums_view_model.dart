@@ -17,7 +17,7 @@ class AlbumsViewModel extends AutoDisposeFamilyAsyncNotifier<List<Album>, int> {
     return await _fetchAlbumUseCase.fetchAlbums(artistId: arg);
   }
 
-  int? albumIdAtIndex(int index) {
-    return state.value?[index].id;
+  Album? albumAtIndex(int index) {
+    return state.value?[index];
   }
 }

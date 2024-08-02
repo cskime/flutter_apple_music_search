@@ -1,16 +1,16 @@
-import 'package:apple_music_search/feature/album/models/track_model/track_model.dart';
+import 'package:apple_music_search/layer/domain/entity/album/album.dart';
 import 'package:flutter/material.dart';
 
-class TrackListHeader extends StatelessWidget {
-  const TrackListHeader({
+class SongsListHeader extends StatelessWidget {
+  const SongsListHeader({
     super.key,
-    required this.track,
+    required this.album,
   });
 
-  final TrackModel track;
+  final Album album;
 
   String get description =>
-      "${track.artistName} · ${track.primaryGenreName} · ${track.trackCount} song(s)";
+      "${album.artistName} · ${album.primaryGenreName} · ${album.numberOfSongs} song(s)";
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class TrackListHeader extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.network(
-              track.artworkUrl100,
+              album.coverImageUrl,
               width: 120,
               height: 120,
               fit: BoxFit.cover,
@@ -36,7 +36,7 @@ class TrackListHeader extends StatelessWidget {
               children: [
                 const SizedBox(height: 2),
                 Text(
-                  track.collectionName,
+                  album.title,
                   style: TextStyle(
                     color: Colors.grey.shade100,
                     fontSize: 18,

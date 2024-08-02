@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:apple_music_search/layer/data/dto/album_dto/album_dto.dart';
+import 'package:apple_music_search/layer/data/dto/song_dto/song_dto.dart';
 import 'package:http/http.dart';
 
 import '../dto/artist_dto/artist_dto.dart';
@@ -9,13 +10,7 @@ import 'itunes_result.dart';
 abstract class ItunesApi {
   Future<List<ArtistDto>> searchArtists({required String query});
   Future<List<AlbumDto>> fetchAlbums({required int artistId});
-
-  // TrackViewModel에서 발생하는 compile error를 없애기 위한 임시 method
-  // Refactoring 후 삭제할 예정
-  Future<ItunesResult> lookup({
-    required int id,
-    required ItunesApiEntityType entityType,
-  });
+  Future<List<SongDto>> fetchSongs({required int albumId});
 }
 
 class ItunesApiImpl extends ItunesApi {
@@ -49,28 +44,6 @@ class ItunesApiImpl extends ItunesApi {
         },
       );
 
-  Future<ItunesResult> search({
-    required String term,
-    required ItunesApiEntityType entityType,
-  }) async {
-    final uri = _makeSearchUri(
-      query: term,
-      entityType: entityType,
-    );
-    final response = await get(uri);
-    return ItunesResult.fromJson(jsonDecode(response.body));
-  }
-
-  @override
-  Future<ItunesResult> lookup({
-    required int id,
-    required ItunesApiEntityType entityType,
-  }) async {
-    final uri = _makeLookupUri(id: id, entityType: entityType);
-    final response = await get(uri);
-    return ItunesResult.fromJson(jsonDecode(response.body));
-  }
-
   @override
   Future<List<ArtistDto>> searchArtists({required String query}) async {
     final uri = _makeSearchUri(
@@ -93,6 +66,20 @@ class ItunesApiImpl extends ItunesApi {
     return result.results
         .where((json) => json["wrapperType"] == "collection")
         .map((json) => AlbumDto.fromJson(json))
+        .toList();
+  }
+
+  @override
+  Future<List<SongDto>> fetchSongs({required int albumId}) async {
+    final uri = _makeLookupUri(
+      id: albumId,
+      entityType: ItunesApiEntityType.song,
+    );
+    final response = await get(uri);
+    final result = ItunesResult.fromJson(jsonDecode(response.body));
+    return result.results
+        .where((json) => json["kind"] == "song")
+        .map((json) => SongDto.fromJson(json))
         .toList();
   }
 }

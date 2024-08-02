@@ -1,10 +1,11 @@
 import 'dart:ui';
 
-import 'package:apple_music_search/feature/album/services/release_date_formatter.dart';
-import 'package:apple_music_search/feature/album/views/tracks_screen.dart';
+import 'package:apple_music_search/layer/presentation/utils/release_date_formatter.dart';
+import 'package:apple_music_search/layer/domain/entity/album/album.dart';
 import 'package:apple_music_search/layer/domain/entity/artist/artist.dart';
+import 'package:apple_music_search/layer/presentation/view/album/songs_screen.dart';
 import 'package:apple_music_search/layer/presentation/view/album/widgets/album/album_cover.dart';
-import 'package:apple_music_search/layer/presentation/view/album/widgets/album/album_to_track_button.dart';
+import 'package:apple_music_search/layer/presentation/view/album/widgets/album/album_to_songs_button.dart';
 import 'package:apple_music_search/layer/presentation/view_model/album/albums_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -29,10 +30,10 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
 
   int _currentPageIndex = 0;
   final _scaleOffset = ValueNotifier<double>(0);
-  int? _currentAlbumId;
+  Album? _currentAlbum;
 
   bool _dragging = false;
-  bool _showAlbumTracks = false;
+  bool _showAlbumSongs = false;
 
   @override
   void initState() {
@@ -65,7 +66,7 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
       return;
     }
     _dragging = true;
-    _showsTrack(details.delta.dy.isNegative);
+    _showsSong(details.delta.dy.isNegative);
   }
 
   void _onVerticalDragEnd(DragEndDetails details) {
@@ -73,24 +74,24 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
   }
 
   void _onShowAlbumPressed() {
-    _showsTrack(false);
+    _showsSong(false);
   }
 
-  void _onShowTrackPressed() {
-    _showsTrack(true);
+  void _onShowSongsPressed() {
+    _showsSong(true);
   }
 
-  void _showsTrack(bool shows) {
+  void _showsSong(bool shows) {
     setState(() {
-      _showAlbumTracks = shows;
+      _showAlbumSongs = shows;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    _currentAlbumId = ref
+    _currentAlbum = ref
         .read(albumsViewModelProvider(widget.artist.id).notifier)
-        .albumIdAtIndex(_currentPageIndex);
+        .albumAtIndex(_currentPageIndex);
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -103,14 +104,14 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
           icon: const Icon(Icons.keyboard_arrow_up_rounded),
           onPressed: _onShowAlbumPressed,
         )._animateFadeIn(
-          forward: _showAlbumTracks,
+          forward: _showAlbumSongs,
           reverse: false,
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
           onPressed: _onBackPressed,
         )._animateFadeOut(
-          forward: _showAlbumTracks,
+          forward: _showAlbumSongs,
           reverse: false,
         ),
       ),
@@ -180,23 +181,23 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
                           onPageChanged: _onPageChanged,
                         )._animatePageY(
                           context: context,
-                          forward: _showAlbumTracks,
+                          forward: _showAlbumSongs,
                           reverse: false,
                         ),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: SafeArea(
-                            child: AlbumToTrackButton(
-                                onPressed: _onShowTrackPressed),
+                            child: AlbumToSongsButton(
+                                onPressed: _onShowSongsPressed),
                           ),
                         )._animatePageY(
                             context: context,
-                            forward: _showAlbumTracks,
+                            forward: _showAlbumSongs,
                             reverse: false),
-                        if (_currentAlbumId != null)
-                          TracksScreen(albumId: _currentAlbumId!)._animatePageY(
+                        if (_currentAlbum != null)
+                          SongsScreen(album: _currentAlbum!)._animatePageY(
                             context: context,
-                            forward: _showAlbumTracks,
+                            forward: _showAlbumSongs,
                             reverse: true,
                           ),
                       ],
