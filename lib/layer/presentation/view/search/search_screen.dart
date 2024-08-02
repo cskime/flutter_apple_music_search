@@ -1,12 +1,13 @@
 import 'package:apple_music_search/feature/album/views/albums_screen.dart';
-import 'package:apple_music_search/feature/search/models/artist/artist_model.dart';
-import 'package:apple_music_search/feature/search/view_models/search_view_model.dart';
-import 'package:apple_music_search/feature/search/views/widgets/artist_name_tag.dart';
-import 'package:apple_music_search/feature/search/views/widgets/search_button.dart';
-import 'package:apple_music_search/feature/search/views/widgets/search_text_field.dart';
+import 'package:apple_music_search/layer/domain/entity/artist.dart';
+import 'package:apple_music_search/layer/presentation/view_model/search_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'widgets/artist_name_tag.dart';
+import 'widgets/search_button.dart';
+import 'widgets/search_text_field.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
@@ -29,7 +30,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen>
     curve: Curves.easeInOut,
   );
 
-  ArtistModel? _selectedArtis;
+  Artist? _selectedArtis;
 
   void _onSearchPressed() async {
     _unfocus();
@@ -43,23 +44,19 @@ class _SearchScreenState extends ConsumerState<SearchScreen>
     _focusNode.unfocus();
   }
 
-  void _onArtistPressed(ArtistModel artist) {
+  void _onArtistPressed(Artist artist) {
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => AlbumsScreen(artist),
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return ScaleTransition(
+            scale: Tween(begin: 0.8, end: 1.0).animate(animation),
+            child: FadeTransition(
+              opacity: animation,
+              child: AlbumsScreen(artist),
+            ),
+          );
+        },
       ),
-
-      // PageRouteBuilder(
-      //   pageBuilder: (context, animation, secondaryAnimation) {
-      //     return ScaleTransition(
-      //       scale: Tween(begin: 0.8, end: 1.0).animate(animation),
-      //       child: FadeTransition(
-      //         opacity: animation,
-      //         child: AlbumsScreen(artist),
-      //       ),
-      //     );
-      //   },
-      // ),
     );
     setState(() {
       _selectedArtis = artist;
@@ -140,8 +137,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen>
                             (artist) => SearchResultTag(
                               artist: artist,
                               onPressed: _onArtistPressed,
-                              selected:
-                                  _selectedArtis?.artistId == artist.artistId,
+                              selected: _selectedArtis?.id == artist,
                             ),
                           ),
                         ],

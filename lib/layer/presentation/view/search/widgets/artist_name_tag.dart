@@ -1,6 +1,6 @@
-import 'package:apple_music_search/feature/search/models/artist/artist_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../../../../domain/entity/artist.dart';
 
 class SearchResultTag extends StatelessWidget {
   const SearchResultTag({
@@ -10,8 +10,8 @@ class SearchResultTag extends StatelessWidget {
     required this.selected,
   });
 
-  final ArtistModel artist;
-  final void Function(ArtistModel artist) onPressed;
+  final Artist artist;
+  final void Function(Artist artist) onPressed;
   final bool selected;
 
   @override
@@ -34,7 +34,7 @@ class SearchResultTag extends StatelessWidget {
           vertical: 6,
         ),
         child: Text(
-          artist.artistName,
+          artist.name,
           style: TextStyle(
             color: selected ? Colors.white : Colors.black,
             fontWeight: FontWeight.w500,

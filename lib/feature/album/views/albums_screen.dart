@@ -5,7 +5,7 @@ import 'package:apple_music_search/feature/album/view_models/albums_view_model.d
 import 'package:apple_music_search/feature/album/views/tracks_screen.dart';
 import 'package:apple_music_search/feature/album/views/widgets/album/album_cover.dart';
 import 'package:apple_music_search/feature/album/views/widgets/album/album_to_track_button.dart';
-import 'package:apple_music_search/feature/search/models/artist/artist_model.dart';
+import 'package:apple_music_search/layer/domain/entity/artist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +16,7 @@ class AlbumsScreen extends ConsumerStatefulWidget {
     super.key,
   });
 
-  final ArtistModel artist;
+  final Artist artist;
 
   @override
   ConsumerState<AlbumsScreen> createState() => _AlbumsScreenState();
@@ -89,7 +89,7 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
   @override
   Widget build(BuildContext context) {
     _currentAlbumId = ref
-        .read(albumsViewModelProvider(widget.artist.artistId).notifier)
+        .read(albumsViewModelProvider(widget.artist.id).notifier)
         .albumIdAtIndex(_currentPageIndex);
 
     return Scaffold(
@@ -114,7 +114,7 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
           reverse: false,
         ),
       ),
-      body: ref.watch(albumsViewModelProvider(widget.artist.artistId)).when(
+      body: ref.watch(albumsViewModelProvider(widget.artist.id)).when(
             data: (data) => data.isEmpty
                 ? const Center(
                     child: Column(
