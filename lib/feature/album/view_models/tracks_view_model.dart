@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:apple_music_search/feature/album/models/track_model/track_model.dart';
 import 'package:apple_music_search/feature/album/services/sample_audio_service.dart';
-import 'package:apple_music_search/network/itunes_api.dart';
+import 'package:apple_music_search/layer/data/network/itunes_api.dart';
+import 'package:apple_music_search/layer/presentation/provider/itunes_api_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final tracksViewModelProvider = AsyncNotifierProvider.family

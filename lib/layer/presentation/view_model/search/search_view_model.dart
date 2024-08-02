@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/entity/artist.dart';
-import '../../domain/usecase/search_artist_use_case.dart';
-import '../providers.dart';
+import '../../../domain/entity/artist/artist.dart';
+import '../../../domain/usecase/search_artist_use_case.dart';
+import '../../provider/search_providers.dart';
 
 final searchViewModelProvider =
     AsyncNotifierProvider<SearchViewModel, List<Artist>>(SearchViewModel.new);

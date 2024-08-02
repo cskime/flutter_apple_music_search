@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../../../../domain/entity/artist.dart';
+import '../../../../domain/entity/artist/artist.dart';
 
 class SearchResultTag extends StatelessWidget {
   const SearchResultTag({

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../domain/entity/artist.dart';
+import '../../../domain/entity/artist/artist.dart';
 
 part 'artist_dto.freezed.dart';
 part 'artist_dto.g.dart';

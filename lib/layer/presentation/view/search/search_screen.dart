@@ -1,6 +1,6 @@
-import 'package:apple_music_search/feature/album/views/albums_screen.dart';
-import 'package:apple_music_search/layer/domain/entity/artist.dart';
-import 'package:apple_music_search/layer/presentation/view_model/search_view_model.dart';
+import 'package:apple_music_search/layer/presentation/view/album/albums_screen.dart';
+import 'package:apple_music_search/layer/domain/entity/artist/artist.dart';
+import 'package:apple_music_search/layer/presentation/view_model/search/search_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

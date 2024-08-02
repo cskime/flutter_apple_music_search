@@ -1,6 +1,6 @@
-import '../dto/artist_dto.dart';
+import '../dto/artist_dto/artist_dto.dart';
 import '../network/itunes_api.dart';
-import '../../domain/entity/artist.dart';
+import '../../domain/entity/artist/artist.dart';
 import '../../domain/repository/artist_repository.dart';
 
 class ArtistRepositoryImpl extends ArtistRepository {

@@ -1,11 +1,11 @@
 import 'dart:ui';
 
 import 'package:apple_music_search/feature/album/services/release_date_formatter.dart';
-import 'package:apple_music_search/feature/album/view_models/albums_view_model.dart';
 import 'package:apple_music_search/feature/album/views/tracks_screen.dart';
-import 'package:apple_music_search/feature/album/views/widgets/album/album_cover.dart';
-import 'package:apple_music_search/feature/album/views/widgets/album/album_to_track_button.dart';
-import 'package:apple_music_search/layer/domain/entity/artist.dart';
+import 'package:apple_music_search/layer/domain/entity/artist/artist.dart';
+import 'package:apple_music_search/layer/presentation/view/album/widgets/album/album_cover.dart';
+import 'package:apple_music_search/layer/presentation/view/album/widgets/album/album_to_track_button.dart';
+import 'package:apple_music_search/layer/presentation/view_model/album/albums_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -134,7 +134,7 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
                           child: LayoutBuilder(
                             key: ValueKey(_currentPageIndex),
                             builder: (context, constraints) => Image.network(
-                              data[_currentPageIndex].artworkUrl100,
+                              data[_currentPageIndex].coverImageUrl,
                               fit: BoxFit.cover,
                               width: constraints.maxWidth,
                               height: constraints.maxHeight,
@@ -164,8 +164,8 @@ class _AlbumsScreenState extends ConsumerState<AlbumsScreen> {
                                   return Transform.scale(
                                     scale: scale,
                                     child: AlbumCover(
-                                      coverUrlString: album.artworkUrl100,
-                                      albumName: album.collectionName,
+                                      coverUrlString: album.coverImageUrl,
+                                      albumName: album.title,
                                       releaseYear: ReleaseDateFormatter()
                                           .dateTime(album.releaseDate)
                                           .year

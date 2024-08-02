@@ -1,4 +1,4 @@
-import '../entity/artist.dart';
+import '../entity/artist/artist.dart';
 import '../repository/artist_repository.dart';
 
 abstract class SearchArtistUseCase {
