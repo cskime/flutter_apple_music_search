@@ -2,7 +2,7 @@ import 'package:apple_music_search/layer/domain/entity/album/album.dart';
 import 'package:apple_music_search/layer/domain/entity/song/song.dart';
 import 'package:apple_music_search/layer/presentation/view/album/widgets/song/song_list_item.dart';
 import 'package:apple_music_search/layer/presentation/view/album/widgets/song/songs_list_header.dart';
-import 'package:apple_music_search/layer/presentation/view_model/song/songs_view_model.dart';
+import 'package:apple_music_search/layer/presentation/view_model/album/songs_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
