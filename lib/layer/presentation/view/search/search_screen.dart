@@ -1,5 +1,5 @@
-import 'package:apple_music_search/layer/presentation/view/album/albums_screen.dart';
 import 'package:apple_music_search/layer/domain/entity/artist/artist.dart';
+import 'package:apple_music_search/layer/presentation/view/album/albums_screen.dart';
 import 'package:apple_music_search/layer/presentation/view_model/search/search_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -10,7 +10,12 @@ import 'widgets/search_button.dart';
 import 'widgets/search_text_field.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
-  const SearchScreen({super.key});
+  const SearchScreen({
+    super.key,
+    required this.viewModel,
+  });
+
+  final SearchViewModel viewModel;
 
   @override
   ConsumerState<SearchScreen> createState() => _SearchScreenState();
@@ -34,10 +39,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen>
 
   void _onSearchPressed() async {
     _unfocus();
-    await ref
-        .read(searchViewModelProvider.notifier)
-        .search(term: _textEditingController.text);
-    setState(() {});
+    await widget.viewModel.searchArtists(query: _textEditingController.text);
   }
 
   void _unfocus() {
@@ -87,8 +89,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen>
 
   @override
   Widget build(BuildContext context) {
-    final artists = ref.watch(searchViewModelProvider).value ?? [];
-
     const contentHeight = 56 + 48 + 12; // t
     final viewVerticalPadding = MediaQuery.viewPaddingOf(context).vertical;
     final viewHeight = MediaQuery.sizeOf(context).height - viewVerticalPadding;
@@ -124,24 +124,41 @@ class _SearchScreenState extends ConsumerState<SearchScreen>
                   onPressed: _onSearchPressed,
                 ),
                 const SizedBox(height: 48),
-                if (_textEditingController.text.isNotEmpty &&
-                    artists.isNotEmpty)
+                if (_textEditingController.text.isNotEmpty)
                   SizedBox(
                     height: viewHeight * 0.5,
-                    child: SingleChildScrollView(
-                      child: Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          ...artists.map(
-                            (artist) => SearchResultTag(
-                              artist: artist,
-                              onPressed: _onArtistPressed,
-                              selected: _selectedArtis?.id == artist,
-                            ),
+                    child: ListenableBuilder(
+                      listenable: widget.viewModel,
+                      builder: (context, child) {
+                        if (widget.viewModel.isLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator.adaptive(),
+                          );
+                        }
+
+                        final artists = widget.viewModel.artists;
+                        if (artists.isEmpty) {
+                          return const Center(
+                            child: Text("0 results"),
+                          );
+                        }
+
+                        return SingleChildScrollView(
+                          child: Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: [
+                              ...artists.map(
+                                (artist) => SearchResultTag(
+                                  artist: artist,
+                                  onPressed: _onArtistPressed,
+                                  selected: _selectedArtis == artist,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
                   ).animate().fadeIn(duration: 300.ms),
               ],

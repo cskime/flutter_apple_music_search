@@ -1,26 +1,25 @@
 import 'dart:async';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../domain/entity/artist/artist.dart';
-import '../../../domain/usecase/search_artist_use_case.dart';
-import '../../provider/search_providers.dart';
+import 'package:apple_music_search/layer/domain/entity/artist/artist.dart';
+import 'package:apple_music_search/layer/domain/usecase/search_artist_use_case.dart';
+import 'package:flutter/material.dart';
 
-final searchViewModelProvider =
-    AsyncNotifierProvider<SearchViewModel, List<Artist>>(SearchViewModel.new);
+class SearchViewModel extends ChangeNotifier {
+  SearchViewModel({
+    required this.searchArtistUseCase,
+  });
 
-class SearchViewModel extends AsyncNotifier<List<Artist>> {
-  late final SearchArtistUseCase searchArtistUseCase;
+  final SearchArtistUseCase searchArtistUseCase;
 
-  @override
-  FutureOr<List<Artist>> build() {
-    searchArtistUseCase = ref.read(searchArtistUseCaseProvider);
-    return [];
-  }
+  var artists = <Artist>[];
+  var isLoading = false;
 
-  Future<void> search({required String term}) async {
-    state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async {
-      return await searchArtistUseCase.search(query: term);
-    });
+  Future<void> searchArtists({required String query}) async {
+    isLoading = true;
+    notifyListeners();
+
+    artists = await searchArtistUseCase.search(query: query);
+    isLoading = false;
+    notifyListeners();
   }
 }
