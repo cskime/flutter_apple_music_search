@@ -4,13 +4,13 @@ import 'package:apple_music_search/layer/domain/usecase/fetch_album_use_case.dar
 import 'package:apple_music_search/layer/presentation/provider/itunes_api_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final albumRepositoryProvider = Provider<AlbumRepository>(
+final albumRepositoryProvider = Provider.autoDispose<AlbumRepository>(
   (ref) => AlbumRepositoryImpl(
     itunesApi: ref.read(itunesApiProvider),
   ),
 );
 
-final fetchAlbumUseCaseProvider = Provider<FetchAlbumUseCase>(
+final fetchAlbumUseCaseProvider = Provider.autoDispose<FetchAlbumUseCase>(
   (ref) => FetchAlbumUseCaseImpl(
     albumRepository: ref.read(albumRepositoryProvider),
   ),
