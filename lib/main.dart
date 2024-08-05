@@ -1,3 +1,4 @@
+import 'package:apple_music_search/layer/data/network/base/network.dart';
 import 'package:apple_music_search/layer/data/network/itunes_api.dart';
 import 'package:apple_music_search/layer/data/repository/artist_repository_impl.dart';
 import 'package:apple_music_search/layer/domain/usecase/search_artist_use_case.dart';
@@ -29,7 +30,8 @@ class _AppleMusicSearchAppState extends State<AppleMusicSearchApp> {
   void initState() {
     super.initState();
 
-    final iTunesApi = ItunesApiImpl();
+    final network = NetworkImpl();
+    final iTunesApi = ItunesApiImpl(network: network);
     final artistRepository = ArtistRepositoryImpl(
       itunesApi: iTunesApi,
     );
