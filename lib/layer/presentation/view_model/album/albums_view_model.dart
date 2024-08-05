@@ -18,6 +18,11 @@ class AlbumsViewModel extends AutoDisposeFamilyAsyncNotifier<List<Album>, int> {
   }
 
   Album? albumAtIndex(int index) {
-    return state.value?[index];
+    if (!state.hasValue) {
+      return null;
+    }
+
+    final albums = state.value ?? [];
+    return albums.length > index ? albums[index] : null;
   }
 }
