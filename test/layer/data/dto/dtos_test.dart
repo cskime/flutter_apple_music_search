@@ -10,7 +10,7 @@ import '../../../dummy/artist_dummy.dart';
 import '../../../dummy/song_dummy.dart';
 
 void main() {
-  test("ArtistDto class can parse a JSON response", () {
+  test("ArtistDto class can parse a JSON", () {
     // given
     const artistId = 159260351;
     final json = jsonDecode(artistDummyJsonString(artistId));
@@ -22,7 +22,7 @@ void main() {
     expect(artist.artistId, artistId);
   });
 
-  test("AlbumDto class can parse a JSON response", () {
+  test("AlbumDto class can parse a JSON", () {
     // given
     const collectionId = 1468058165;
     final json = jsonDecode(albumDummyJsonString(collectionId));
@@ -34,7 +34,7 @@ void main() {
     expect(album.collectionId, collectionId);
   });
 
-  test("SongDto class can parse a JSON response", () {
+  test("SongDto class can parse a JSON", () {
     // given
     const trackId = 1468058169;
     final json = jsonDecode(songDummyJsonString(trackId));
