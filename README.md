@@ -115,6 +115,10 @@ Override를 하지 않기 위해 의존성으로 주입하려는 객체들에 �
 
 ### Text marquee animation
 
+<div align="center">
+<img src="./documents/images/marquee-animation.gif" width="400" />
+</div>
+
 - Song list에서 title이 길어서 잘리는 곡을 재생할 때, song title에 marquee animation을 구현했다.
 - 구현 과정
   1. `TextPainter`를 사용하여 text width 계산
