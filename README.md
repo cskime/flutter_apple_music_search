@@ -1,6 +1,5 @@
 # Apple Music Search
 
-- Nomadcoders Flutter 10주 Study에서 만든 졸업 작품
 - iTunes Search API를 활용하여 Apple Music에서 artist를 검색하고, 해당 artist의 발매 앨범 및 앨범 수록곡들을 조회할 수 있다.
 - API가 제공하는 30초짜리 sample audio를 재생해 볼 수 있다.
 
